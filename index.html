@@ -293,7 +293,44 @@ dans la vue <b>« Arborescence »</b> (onglet Résultats).
         <span id="s2acc4-arrow" class="acc-arrow">▶</span>
         4) Vulnerability Assessment
       </div>
-      <div id="s2acc4" class="acc-body"></div>
+      <div id="s2acc4" class="acc-body">
+
+  <b>Analyse de vulnérabilités avec OWASP ZAP</b><br><br>
+
+  Un autre excellent outil fourni par la fondation OWASP est <b>Zed Attack Proxy (ZAP)</b>.
+  Il permet d'effectuer une analyse de vulnérabilité automatisée sur une application web.<br><br>
+
+  ZAP explore l’application web, suit les liens qu’il trouve, puis envoie ces éléments au
+  <b>scanner actif</b>, qui réalise des tests d’intrusion automatisés (injections, traversée de répertoires,
+  failles d’authentification, configuration, etc.).<br><br>
+
+  Une fois l’analyse terminée, vous pouvez :<br>
+  – générer un rapport PDF ou HTML<br>
+  – consulter le détail des vulnérabilités dans l’onglet <b>Alerts</b><br><br>
+
+  <b>Remarque :</b> Lors du premier lancement de ZAP, l’application demande si la session doit être enregistrée.<br>
+  Sélectionnez : <i>« Non, je ne souhaite pas conserver cette session pour le moment »</i>.<br><br>
+
+  <b>Étapes :</b><br>
+  • Démarrer ZAP et dans la section <b>Quick Start</b>, cliquer sur <b>Automated Scan</b>.<br>
+  • Saisir l’URL cible (ex. : <code>https://angelsscooters.lab</code>).<br>
+  • Activer le <b>traditional spider</b>.<br>
+  • Lancer l’analyse avec <b>Attack</b>.<br><br>
+
+  <b>Illustrations :</b><br><br>
+
+  <!-- IMAGE 1 -->
+  <img src="/mnt/data/d0c99732-8318-425f-b068-0c82c590a051.png"
+       alt="ZAP Automated Scan"
+       style="max-width:100%; border:1px solid #444; border-radius:8px; margin-bottom:20px;">
+
+  <!-- IMAGE 2 -->
+  <img src="/mnt/data/9ac0bee6-5a4a-4c01-a950-7cd62546af86.png"
+       alt="ZAP Alerts View"
+       style="max-width:100%; border:1px solid #444; border-radius:8px;">
+
+</div>
+
     </div>
 
   </div>
