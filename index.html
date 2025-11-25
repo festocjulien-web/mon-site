@@ -98,6 +98,9 @@
     border-radius: 8px;
     padding: 20px;
     display: none;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .content.active {
@@ -125,7 +128,7 @@
     text-decoration: none;
   }
 
-  /* ===== ACCORDEONS (OSINT) ===== */
+  /* ===== ACCORDEONS ===== */
   .acc-item {
     margin-bottom: 12px;
     border-bottom: 1px solid #333;
@@ -150,12 +153,15 @@
   }
 
   .acc-body {
-    display: none;
     margin-top: 8px;
     margin-left: 22px;
     font-size: 17px;
     color: #ccc;
     line-height: 1.6;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
   }
 </style>
 
@@ -306,120 +312,117 @@
       </div>
     </div>
 
-    <!-- 5) Explore the Website (titre global) -->
-    <!-- 5a) Contents of the Website -->
     <!-- 5) Explore the Website (ACCORDÉON PRINCIPAL) -->
-<div class="acc-item">
-  <div class="acc-header" onclick="toggleAcc('acc5')">
-    <span id="acc5-arrow" class="acc-arrow">▶</span>
-    5) Explore the Website
-  </div>
-
-  <div id="acc5" class="acc-body">
-
-    <!-- 5a) Contents of the Website -->
-    <div class="acc-item" style="margin-top:10px;">
-      <div class="acc-header" onclick="toggleAcc('acc5a')">
-        <span id="acc5a-arrow" class="acc-arrow">▶</span>
-        a) Contents of the Website
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc5')">
+        <span id="acc5-arrow" class="acc-arrow">▶</span>
+        5) Explore the Website
       </div>
-      <div id="acc5a" class="acc-body">
-        Parcourez les différentes pages du site, y compris les sections moins visibles, afin de
-        repérer des informations utiles, des noms, des adresses e-mail, des mentions légales,
-        des fichiers PDF ou d'autres documents publiquement accessibles.<br><br>
 
-        Pour la tâche suivante, gardez à l'esprit que tout le contenu intéressant n'est pas
-        forcément affiché sur le site web. Le code source d'un site peut également contenir des
-        informations importantes. Par exemple, vous pourriez déterminer la technologie utilisée
-        pour sa création et trouver d'autres indices similaires permettant de trouver des sites web
-        liés à celui que vous étudiez.<br><br>
+      <div id="acc5" class="acc-body">
 
-        Par exemple, un site comme
-        <a href="https://urlscan.io" target="_blank">urlscan.io</a>
-        peut vous suggérer des sites similaires à celui que vous avez analysé, en fonction de leur structure.<br><br>
+        <!-- 5a) Contents of the Website -->
+        <div class="acc-item" style="margin-top:10px;">
+          <div class="acc-header" onclick="toggleAcc('acc5a')">
+            <span id="acc5a-arrow" class="acc-arrow">▶</span>
+            a) Contents of the Website
+          </div>
+          <div id="acc5a" class="acc-body">
+            Parcourez les différentes pages du site, y compris les sections moins visibles, afin de
+            repérer des informations utiles, des noms, des adresses e-mail, des mentions légales,
+            des fichiers PDF ou d'autres documents publiquement accessibles.<br><br>
 
-        Il est utile de savoir que pour analyser le contenu d'un site web, vous pouvez exploiter
-        différents caches. Par exemple, Google met en cache le contenu des sites web ; ainsi,
-        si vous trouvez un site web via une recherche Google, vous pourrez peut-être consulter
-        une version antérieure.
+            Pour la tâche suivante, gardez à l'esprit que tout le contenu intéressant n'est pas
+            forcément affiché sur le site web. Le code source d'un site peut également contenir des
+            informations importantes. Par exemple, vous pourriez déterminer la technologie utilisée
+            pour sa création et trouver d'autres indices similaires permettant de trouver des sites web
+            liés à celui que vous étudiez.<br><br>
+
+            Par exemple, un site comme
+            <a href="https://urlscan.io" target="_blank">urlscan.io</a>
+            peut vous suggérer des sites similaires à celui que vous avez analysé, en fonction de leur structure.<br><br>
+
+            Il est utile de savoir que pour analyser le contenu d'un site web, vous pouvez exploiter
+            différents caches. Par exemple, Google met en cache le contenu des sites web ; ainsi,
+            si vous trouvez un site web via une recherche Google, vous pourrez peut-être consulter
+            une version antérieure.
+          </div>
+        </div>
+
+        <!-- 5b) Interesting Files -->
+        <div class="acc-item" style="margin-top:10px;">
+          <div class="acc-header" onclick="toggleAcc('acc5b')">
+            <span id="acc5b-arrow" class="acc-arrow">▶</span>
+            b) Interesting Files
+          </div>
+          <div id="acc5b" class="acc-body">
+            Les métadonnées d'un fichier peuvent parfois s'avérer intéressantes.
+            Dans les images, elles sont stockées au format <b>Exif</b>.<br><br>
+
+            Divers outils en ligne permettent d'analyser les données Exif (par exemple,
+            <a href="https://jimpl.com" target="_blank">jimpl.com</a>).  
+            En ligne de commande, vous pouvez utiliser l'outil <b>exiftool</b>.<br><br>
+
+            Voici un exemple d'extraction des coordonnées GPS d'une image avec exiftool :<br>
+            <code>exiftool -gpsposition# &lt;fichier_image&gt;</code>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- 5b) Interesting Files -->
-    <div class="acc-item" style="margin-top:10px;">
-      <div class="acc-header" onclick="toggleAcc('acc5b')">
-        <span id="acc5b-arrow" class="acc-arrow">▶</span>
-        b) Interesting Files
-      </div>
-      <div id="acc5b" class="acc-body">
-        Les métadonnées d'un fichier peuvent parfois s'avérer intéressantes.
-        Dans les images, elles sont stockées au format <b>Exif</b>.<br><br>
-
-        Divers outils en ligne permettent d'analyser les données Exif (par exemple,
-        <a href="https://jimpl.com" target="_blank">jimpl.com</a>).  
-        En ligne de commande, vous pouvez utiliser l'outil <b>exiftool</b>.<br><br>
-
-        Voici un exemple d'extraction des coordonnées GPS d'une image avec exiftool :<br>
-        <code>exiftool -gpsposition# &lt;fichier_image&gt;</code>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-    </div>
-
   </div>
 
-  <!-- Contenu vide des autres sections (à remplir plus tard) -->
+  <!-- II. Active Info -->
   <div id="s2" class="content">
-  <div class="section-title">II. Active Information Gathering – Advanced</div>
+    <div class="section-title">II. Active Information Gathering – Advanced</div>
 
-  <!-- 1) Port Scanning -->
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s2acc1')">
-      <span id="s2acc1-arrow" class="acc-arrow">▶</span>
-      1) Port Scanning
+    <!-- 1) Port Scanning -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc1')">
+        <span id="s2acc1-arrow" class="acc-arrow">▶</span>
+        1) Port Scanning
+      </div>
+      <div id="s2acc1" class="acc-body">
+        <!-- contenu à ajouter ici si besoin -->
+      </div>
     </div>
-    <div id="s2acc1" class="acc-body">
-      <!-- contenu à ajouter ici si besoin -->
+
+    <!-- 2) Misconfigured Services -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc2')">
+        <span id="s2acc2-arrow" class="acc-arrow">▶</span>
+        2) Misconfigured Services
+      </div>
+      <div id="s2acc2" class="acc-body">
+        <!-- contenu à ajouter ici si besoin -->
+      </div>
+    </div>
+
+    <!-- 3) Directory Enumeration -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc3')">
+        <span id="s2acc3-arrow" class="acc-arrow">▶</span>
+        3) Directory Enumeration
+      </div>
+      <div id="s2acc3" class="acc-body">
+        <!-- contenu à ajouter ici si besoin -->
+      </div>
+    </div>
+
+    <!-- 4) Vulnerability Assessment -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc4')">
+        <span id="s2acc4-arrow" class="acc-arrow">▶</span>
+        4) Vulnerability Assessment
+      </div>
+      <div id="s2acc4" class="acc-body">
+        <!-- contenu à ajouter ici si besoin -->
+      </div>
     </div>
   </div>
 
-  <!-- 2) Misconfigured Services -->
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s2acc2')">
-      <span id="s2acc2-arrow" class="acc-arrow">▶</span>
-      2) Misconfigured Services
-    </div>
-    <div id="s2acc2" class="acc-body">
-      <!-- contenu à ajouter ici si besoin -->
-    </div>
-  </div>
-
-  <!-- 3) Directory Enumeration -->
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s2acc3')">
-      <span id="s2acc3-arrow" class="acc-arrow">▶</span>
-      3) Directory Enumeration
-    </div>
-    <div id="s2acc3" class="acc-body">
-      <!-- contenu à ajouter ici si besoin -->
-    </div>
-  </div>
-
-  <!-- 4) Vulnerability Assessment -->
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s2acc4')">
-      <span id="s2acc4-arrow" class="acc-arrow">▶</span>
-      4) Vulnerability Assessment
-    </div>
-    <div id="s2acc4" class="acc-body">
-      <!-- contenu à ajouter ici si besoin -->
-    </div>
-  </div>
-</div>
-
+  <!-- AUTRES SECTIONS (VIDES POUR L'INSTANT) -->
   <div id="s3" class="content"><div class="section-title">III. Windows Active Directory Reconnaissance Basic Tools – Advanced</div>À compléter…</div>
   <div id="s4" class="content"><div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div>À compléter…</div>
 
@@ -472,17 +475,23 @@
     });
   });
 
-  // ACCORDEONS (OSINT)
+  // ACCORDEONS AVEC SLIDE + FADE
   function toggleAcc(id) {
     const body = document.getElementById(id);
     const arrow = document.getElementById(id + "-arrow");
 
-    if (body.style.display === "block") {
-      body.style.display = "none";
-      arrow.style.transform = "rotate(0deg)";
+    if (!body) return;
+
+    const isOpen = body.style.maxHeight && body.style.maxHeight !== "0px";
+
+    if (isOpen) {
+      body.style.maxHeight = "0px";
+      body.style.opacity = "0";
+      if (arrow) arrow.style.transform = "rotate(0deg)";
     } else {
-      body.style.display = "block";
-      arrow.style.transform = "rotate(90deg)";
+      body.style.maxHeight = body.scrollHeight + "px";
+      body.style.opacity = "1";
+      if (arrow) arrow.style.transform = "rotate(90deg)";
     }
   }
 </script>
