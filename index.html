@@ -145,12 +145,19 @@
         <br>
 
         b) <b>Interesting Files</b><br>
-        <span style="margin-left:20px; display:block;">
-          Certains sites contiennent des fichiers accessibles publiquement : PDF, documents
-          internes, archives ZIP, rapports d’erreurs, sauvegardes accidentelles, etc.  
-          Vous pouvez également consulter les répertoires parfois non protégés ou accessibles
-          via des chemins prédictibles (exemple : <i>/backup</i>, <i>/old</i>, <i>/files</i>, etc.).
-        </span>
+       b) <b>Interesting Files</b><br>
+<span style="margin-left:20px; display:block;">
+  Les métadonnées d'un fichier peuvent parfois s'avérer intéressantes.  
+  Dans les images, elles sont stockées au format <b>Exif</b>.<br><br>
+
+  Divers outils en ligne permettent d'analyser les données Exif (par exemple,
+  <a href="https://jimpl.com" target="_blank" style="color:#4da3ff;">jimpl.com</a>).  
+  En ligne de commande, vous pouvez utiliser l'outil <b>exiftool</b>.<br><br>
+
+  Voici un exemple d'extraction des coordonnées GPS d'une image avec exiftool :<br>
+  <code>exiftool -gpsposition# &lt;fichier_image&gt;</code>
+</span>
+
       </span>
     </div>
 
