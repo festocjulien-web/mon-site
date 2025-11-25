@@ -331,7 +331,140 @@ dans la vue <b>« Arborescence »</b> (onglet Résultats).
   </div>
 
   <!-- AUTRES SECTIONS VIDES -->
-  <div id="s3" class="content"><div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div></div>
+  <!-- ===================== SECTION III ===================== -->
+<div id="s3" class="content">
+  <div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div>
+
+  <!-- 1) Getting Your Bearings -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s3acc1')">
+      <span id="s3acc1-arrow" class="acc-arrow">▶</span>
+      1) Getting Your Bearings
+    </div>
+    <div id="s3acc1" class="acc-body">
+
+      <b>Command Prompt</b><br><br>
+
+      Le <b>Command Prompt (cmd.exe)</b> reste encore très utile pour l’énumération AD.<br><br>
+
+      Référencer une variable d’environnement :
+
+      <pre><code>echo %USERNAME%</code></pre>
+
+      Afficher toutes les variables :
+
+      <pre><code>set</code></pre>
+
+      Voir celles commençant par USER :
+
+      <pre><code>set USER</code></pre>
+
+      <br>
+
+      <b>PowerShell</b><br><br>
+
+      Référencer une variable PS :
+
+      <pre><code>echo $Env:PSModulePath</code></pre>
+
+      Lister toutes les variables d’environnement :
+
+      <pre><code>dir Env:</code></pre>
+
+      Utiliser .NET dans PowerShell :
+
+      <pre><code>[System.Net.Dns]::GetHostName()</code></pre>
+
+      <br>
+
+      <b>Commandes communes utiles :</b>
+
+      <pre><code>hostname
+whoami
+systeminfo
+wmic computersystem get domain</code></pre>
+
+    </div>
+  </div>
+
+
+  <!-- 2) Active Directory Explorer -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s3acc2')">
+      <span id="s3acc2-arrow" class="acc-arrow">▶</span>
+      2) Active Directory Explorer
+    </div>
+
+    <div id="s3acc2" class="acc-body">
+
+      <!-- 2a) Loading -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2a')">
+          <span id="s3acc2a-arrow" class="acc-arrow">▶</span>
+          a) Loading
+        </div>
+        <div id="s3acc2a" class="acc-body">
+          Chargez une base AD locale ou distante depuis l’interface de l’outil.
+        </div>
+      </div>
+
+      <!-- 2b) Connecting -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2b')">
+          <span id="s3acc2b-arrow" class="acc-arrow">▶</span>
+          b) Connecting to Domain
+        </div>
+        <div id="s3acc2b" class="acc-body">
+          Connectez-vous au domaine Active Directory avec des identifiants valides ou un compte compromis.
+        </div>
+      </div>
+
+      <!-- 2c) Features -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2c')">
+          <span id="s3acc2c-arrow" class="acc-arrow">▶</span>
+          c) Features
+        </div>
+        <div id="s3acc2c" class="acc-body">
+          AD Explorer permet d’inspecter :
+          <br>- Users & groups  
+          <br>- ACLs  
+          <br>- Permissions  
+          <br>- Computers et OU  
+        </div>
+      </div>
+
+      <!-- 2d) Snapshots -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2d')">
+          <span id="s3acc2d-arrow" class="acc-arrow">▶</span>
+          d) Snapshots
+        </div>
+        <div id="s3acc2d" class="acc-body">
+          Permet de capturer un état de l'AD (structure, groupes, droits).  
+        </div>
+      </div>
+
+      <!-- 2e) Comparing -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2e')">
+          <span id="s3acc2e-arrow" class="acc-arrow">▶</span>
+          e) Comparing
+        </div>
+        <div id="s3acc2e" class="acc-body">
+          Compare deux snapshots pour détecter :  
+          <br>- modifications de permissions  
+          <br>- nouveaux comptes  
+          <br>- changements dans les groupes AD  
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- ===================== FIN SECTION III ===================== -->
+
   <div id="s4" class="content"><div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div></div>
   <div id="s5" class="content"><div class="section-title">V. Nmap: Basics – Intermediate</div></div>
   <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div></div>
