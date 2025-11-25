@@ -312,7 +312,17 @@
     </div>
 
     <!-- 5a) Contents of the Website -->
-    <div class="acc-item">
+    <!-- 5) Explore the Website (ACCORDÉON PRINCIPAL) -->
+<div class="acc-item">
+  <div class="acc-header" onclick="toggleAcc('acc5')">
+    <span id="acc5-arrow" class="acc-arrow">▶</span>
+    5) Explore the Website
+  </div>
+
+  <div id="acc5" class="acc-body">
+
+    <!-- 5a) Contents of the Website -->
+    <div class="acc-item" style="margin-top:10px;">
       <div class="acc-header" onclick="toggleAcc('acc5a')">
         <span id="acc5a-arrow" class="acc-arrow">▶</span>
         a) Contents of the Website
@@ -340,7 +350,7 @@
     </div>
 
     <!-- 5b) Interesting Files -->
-    <div class="acc-item">
+    <div class="acc-item" style="margin-top:10px;">
       <div class="acc-header" onclick="toggleAcc('acc5b')">
         <span id="acc5b-arrow" class="acc-arrow">▶</span>
         b) Interesting Files
@@ -356,6 +366,11 @@
         Voici un exemple d'extraction des coordonnées GPS d'une image avec exiftool :<br>
         <code>exiftool -gpsposition# &lt;fichier_image&gt;</code>
       </div>
+    </div>
+
+  </div>
+</div>
+
     </div>
 
   </div>
