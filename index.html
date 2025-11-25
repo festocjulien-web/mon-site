@@ -21,32 +21,41 @@
 
   h1 {
     font-size: 26px;
-    margin-bottom: 15px;
     text-align: center;
+    margin-bottom: 20px;
   }
 
-  .tabs-container {
-    margin-top: 10px;
+  /* ===== CARROUSEL TITRES ===== */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
   }
 
-  .tabs {
+  .carousel {
     display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 6px;
+    gap: 10px;
+    transition: transform 0.5s ease;
+  }
+
+  .title-group {
+    display: flex;
+    gap: 10px;
+    min-width: 100%;
     justify-content: center;
   }
 
   .tab {
-    border: 1px solid #333;
-    padding: 6px 10px;
     background: #222;
-    color: #ccc;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #333;
     cursor: pointer;
-    font-size: 14px;
-    border-radius: 6px 6px 0 0;
-    outline: none;
+    color: #ccc;
+    font-size: 16px;
+    min-width: 150px;
+    text-align: center;
+    font-weight: bold;
   }
 
   .tab:hover {
@@ -57,322 +66,213 @@
     background: #4da3ff;
     color: #000;
     border-color: #4da3ff;
-    font-weight: bold;
   }
 
-  .tab-content-wrapper {
-    margin-top: 15px;
-  }
-
-  .tab-content {
-    display: none;
-    padding: 15px;
-    background: #181818;
-    border-radius: 0 8px 8px 8px;
+  /* ===== FLECHES ===== */
+  .arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: #222;
+    color: #4da3ff;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
     border: 1px solid #333;
-    font-size: 18px;
-    line-height: 1.6;
   }
 
-  .tab-content.active {
+  .arrow:hover {
+    background: #4da3ff;
+    color: #000;
+  }
+
+  #leftArrow { left: -5px; }
+  #rightArrow { right: -5px; }
+
+  /* ===== CONTENU DE SECTION ===== */
+  .content {
+    margin-top: 25px;
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    display: none;
+  }
+
+  .content.active {
     display: block;
   }
 
-  .section-title-inside {
+  .section-title {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .item {
-    margin-bottom: 12px;
-  }
-
-  a {
-    text-decoration: none;
+    margin-bottom: 15px;
   }
 
   code {
     background: #000;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-size: 16px;
+    padding: 3px 5px;
+    border-radius: 4px;
   }
 
-  @media (max-width: 700px) {
-    .tab {
-      font-size: 12px;
-      padding: 4px 6px;
-    }
-    .tab-content {
-      font-size: 16px;
-    }
-  }
 </style>
 
 </head>
 <body>
 
 <div class="container">
-  <h1>PECB Certified Hacker – Aide-mémoire</h1>
 
-  <div class="tabs-container">
-    <div class="tabs">
-      <button class="tab active" data-tab="tab1">I. OSINT</button>
-      <button class="tab" data-tab="tab2">II</button>
-      <button class="tab" data-tab="tab3">III</button>
-      <button class="tab" data-tab="tab4">IV</button>
-      <button class="tab" data-tab="tab5">V</button>
-      <button class="tab" data-tab="tab6">VI</button>
-      <button class="tab" data-tab="tab7">VII</button>
-      <button class="tab" data-tab="tab8">VIII</button>
-      <button class="tab" data-tab="tab9">IX</button>
-      <button class="tab" data-tab="tab10">X</button>
-      <button class="tab" data-tab="tab11">XI</button>
-      <button class="tab" data-tab="tab12">XII</button>
-      <button class="tab" data-tab="tab13">XIII</button>
-      <button class="tab" data-tab="tab14">XIV</button>
-      <button class="tab" data-tab="tab15">XV</button>
-      <button class="tab" data-tab="tab16">XVI</button>
+  <h1>PECB Certified Hacker – Aide mémoire</h1>
+
+  <!-- ==== CARROUSEL TITRES ==== -->
+  <div class="carousel-wrapper">
+    <div id="carousel" class="carousel">
+
+      <!-- Groupe 1 -->
+      <div class="title-group">
+        <div class="tab active" data-target="s1">I. OSINT</div>
+        <div class="tab" data-target="s2">II. Active Info</div>
+        <div class="tab" data-target="s3">III. AD Recon</div>
+        <div class="tab" data-target="s4">IV. Phishing</div>
+      </div>
+
+      <!-- Groupe 2 -->
+      <div class="title-group">
+        <div class="tab" data-target="s5">V. Nmap</div>
+        <div class="tab" data-target="s6">VI. Greenbone</div>
+        <div class="tab" data-target="s7">VII. Password Spray</div>
+        <div class="tab" data-target="s8">VIII. WPScan</div>
+      </div>
+
+      <!-- Groupe 3 -->
+      <div class="title-group">
+        <div class="tab" data-target="s9">IX. Macro Malware</div>
+        <div class="tab" data-target="s10">X. Tomcat LSASS</div>
+        <div class="tab" data-target="s11">XI. NodeJS Upload</div>
+        <div class="tab" data-target="s12">XII. PHP Upload</div>
+      </div>
+
+      <!-- Groupe 4 -->
+      <div class="title-group">
+        <div class="tab" data-target="s13">XIII. SUID</div>
+        <div class="tab" data-target="s14">XIV. Metasploit</div>
+        <div class="tab" data-target="s15">XV. Reverse Shells</div>
+        <div class="tab" data-target="s16">XVI. Exfiltration</div>
+      </div>
+
     </div>
 
-    <div class="tab-content-wrapper">
+    <div id="leftArrow" class="arrow">❮</div>
+    <div id="rightArrow" class="arrow">❯</div>
+  </div>
 
-      <!-- ============= ONGLET I ============= -->
-      <div id="tab1" class="tab-content active">
-        <div class="section-title-inside">I. Introduction to OSINT</div>
+  <!-- ==== CONTENU DES SECTIONS ==== -->
+  <div id="s1" class="content active">
+    <div class="section-title">I. OSINT</div>
 
-        <div class="item">
-          1) Search Engines<br>
-          <span style="font-size:17px; color:#ccc;">
-            Par exemple, sur Google, si vous souhaitez rechercher le contenu d'un site web spécifique,
-            vous pouvez utiliser le mot-clé <b>site:</b>.<br>
-            Ainsi, si vous souhaitez obtenir uniquement les résultats provenant de pastebin.com,
-            vous pouvez inclure la requête : <b>site:pastebin.com</b><br><br>
+    <div class="item">
+      <b>1) Search Engines</b><br>
+      <span style="color:#ccc;">
+        Utilisez <b>site:</b> pour cibler un domaine (ex: <b>site:pastebin.com</b>).<br><br>
+        D’autres exemples :  
+        <a href="https://www.exploit-db.com/google-hacking-database" target="_blank" style="color:#4da3ff;">
+        Google Hacking Database</a>
+      </span>
+    </div>
 
-            Dans votre recherche Google, vous pouvez également préciser ces termes grâce
-            à la recherche avancée de Google.<br><br>
+    <div class="item">
+      <b>2) Phishing Email</b><br>
+      <span style="color:#ccc;">Utiliser la recherche Google.</span>
+    </div>
 
-            Pour d'autres exemples similaires, vous pouvez consulter la
-            <a href="https://www.exploit-db.com/google-hacking-database" target="_blank" style="color:#4da3ff;">
-              base de données de piratage de Google
-            </a>.<br>
+    <div class="item">
+      <b>3) Creative Approach</b><br>
+      <span style="color:#ccc;">
+        Tester l'email dans plusieurs bases, rechercher alias, variantes, comptes liés.
+      </span>
+    </div>
 
-            Notez toutefois que les exemples qui s'y trouvent sont davantage axés sur la recherche
-            de sites web vulnérables et autres problèmes de ce type. Vous n'aurez pas besoin
-            d'appliquer ces techniques dans ce module.
-          </span>
-        </div>
+    <div class="item">
+      <b>4) Find Further Information</b><br>
+      <span style="color:#ccc;">
+        Outils : <b>usersearch.org</b>, <b>pipl</b>, <b>spokeo</b>, <b>osintframework.com</b>.
+      </span>
+    </div>
 
-        <div class="item">
-          2) Phishing Email<br>
-          <span style="font-size:17px; color:#ccc;">
-            Utiliser la recherche Google.
-          </span>
-        </div>
+    <div class="item">
+      <b>5) Explore the Website</b><br>
 
-        <div class="item">
-          3) Creative Approach<br>
-          <span style="font-size:17px; color:#ccc;">
-            À ce stade, vous pourriez tenter d'utiliser directement l'adresse e-mail trouvée
-            pour interroger différentes bases de données.<br><br>
+      <p style="margin-left:20px;">
+        <b>a) Contents of the Website</b><br>
+        <span style="color:#ccc;">
+          Analyse des pages, code source, pages cachées, cache Google, urlscan.io.<br><br>
+        </span>
 
-            Vous pouvez également essayer de deviner les noms d'utilisateur utilisés par le
-            propriétaire de cette adresse et rechercher d'éventuels comptes en ligne sur
-            d'autres plateformes.<br><br>
-
-            De même, vous pourriez essayer de deviner d'autres adresses e-mail utilisées
-            par cette personne et effectuer des recherches sur Internet à leur sujet.
-          </span>
-        </div>
-
-        <div class="item">
-          4) Find Further Information<br>
-          <span style="font-size:17px; color:#ccc;">
-            La recherche de noms ou de noms d'utilisateur est généralement plus efficace avec des
-            outils personnalisés. Ces outils interrogent directement les différentes sources et ne
-            dépendent pas des moteurs de recherche qui, pour diverses raisons, n'ont peut-être pas
-            indexé les informations pertinentes.<br><br>
-
-            Cette approche est évidemment beaucoup plus rapide que de parcourir manuellement chaque site web.<br><br>
-
-            Pour les noms d'utilisateur, par exemple, un site comme
-            <a href="https://usersearch.org" target="_blank" style="color:#4da3ff;">usersearch.org</a>
-            est très utile. Si, grâce à ces outils, vous constatez qu'un site de réseau social peut
-            contenir des informations complémentaires liées à votre recherche, vous pouvez alors
-            les examiner directement.<br><br>
-
-            <b>Remarque :</b> Sachez que ces sites peuvent donner des résultats pertinents, mais aussi
-            de faux positifs.<br><br>
-
-            Il existe également des sites web conçus spécifiquement pour la recherche de personnes,
-            tels que <a href="https://pipl.com" target="_blank" style="color:#4da3ff;">pipl.com</a>
-            ou <a href="https://www.spokeo.com" target="_blank" style="color:#4da3ff;">spokeo.com</a>.
-            Cependant, vous n'aurez pas besoin d'utiliser ces moteurs de recherche dans ce module.<br><br>
-
-            De manière générale, il n'est pas nécessaire d'essayer tous les outils présentés dans
-            ce module, et sachez que certains sont payants. Cependant, lorsque vous vous lancez seul,
-            le site web
-            <a href="https://osintframework.com" target="_blank" style="color:#4da3ff;">osintframework.com</a>
-            constitue un bon point de départ pour trouver une liste d'outils adaptés à différents usages.
-          </span>
-        </div>
-
-        <div class="item">
-          5) Explore the Website<br>
-          <span style="font-size:17px; color:#ccc;">
-
-            a) <b>Contents of the Website</b><br>
-            <span style="margin-left:20px; display:block;">
-              Parcourez les différentes pages du site, y compris les sections moins visibles, afin de
-              repérer des informations utiles, des noms, des adresses e-mail, des mentions légales,
-              des fichiers PDF ou d'autres documents publiquement accessibles.<br><br>
-
-              Pour la tâche suivante, gardez à l'esprit que tout le contenu intéressant n'est pas
-              forcément affiché sur le site web. Le code source d'un site peut également contenir des
-              informations importantes. Par exemple, vous pourriez déterminer la technologie utilisée
-              pour sa création et trouver d'autres indices similaires permettant de trouver des sites web
-              liés à celui que vous étudiez.<br><br>
-
-              Par exemple, un site comme
-              <a href="https://urlscan.io" target="_blank" style="color:#4da3ff;">urlscan.io</a>
-              peut vous suggérer des sites similaires à celui que vous avez analysé, en fonction de leur structure.<br><br>
-
-              Il est utile de savoir que pour analyser le contenu d'un site web, vous pouvez exploiter
-              différents caches. Par exemple, Google met en cache le contenu des sites web ; ainsi,
-              si vous trouvez un site web via une recherche Google, vous pourrez peut-être consulter
-              une version antérieure.
-            </span>
-            <br>
-
-            b) <b>Interesting Files</b><br>
-            <span style="margin-left:20px; display:block;">
-              Les métadonnées d'un fichier peuvent parfois s'avérer intéressantes.  
-              Dans les images, elles sont stockées au format <b>Exif</b>.<br><br>
-
-              Divers outils en ligne permettent d'analyser les données Exif (par exemple,
-              <a href="https://jimpl.com" target="_blank" style="color:#4da3ff;">jimpl.com</a>).  
-              En ligne de commande, vous pouvez utiliser l'outil <b>exiftool</b>.<br><br>
-
-              Voici un exemple d'extraction des coordonnées GPS d'une image avec exiftool :<br>
-              <code>exiftool -gpsposition# &lt;fichier_image&gt;</code>
-            </span>
-
-          </span>
-        </div>
-      </div>
-
-      <!-- ============= ONGLET II ============= -->
-      <div id="tab2" class="tab-content">
-        <div class="section-title-inside">II. Active Information Gathering – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">
-          À compléter avec tes notes (outils, commandes, check-list de scan, etc.).
-        </p>
-      </div>
-
-      <!-- ============= ONGLET III ============= -->
-      <div id="tab3" class="tab-content">
-        <div class="section-title-inside">III. Windows Active Directory Reconnaissance Basic Tools – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET IV ============= -->
-      <div id="tab4" class="tab-content">
-        <div class="section-title-inside">IV. Setting up a Phishing Campaign – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET V ============= -->
-      <div id="tab5" class="tab-content">
-        <div class="section-title-inside">V. Nmap: Basics – Intermediate</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET VI ============= -->
-      <div id="tab6" class="tab-content">
-        <div class="section-title-inside">VI. Greenbone Vulnerability Management – Intermediate</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET VII ============= -->
-      <div id="tab7" class="tab-content">
-        <div class="section-title-inside">VII. Password Spraying – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET VIII ============= -->
-      <div id="tab8" class="tab-content">
-        <div class="section-title-inside">VIII. Vulnerability Assessment: Wordpress with WPScan – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET IX ============= -->
-      <div id="tab9" class="tab-content">
-        <div class="section-title-inside">IX. Microsoft Office Macro Malware – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET X ============= -->
-      <div id="tab10" class="tab-content">
-        <div class="section-title-inside">X. Malicious Tomcat War File and LSASS Dump – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET XI ============= -->
-      <div id="tab11" class="tab-content">
-        <div class="section-title-inside">XI. Unrestricted File Upload: Find & Exploit (NodeJS) – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET XII ============= -->
-      <div id="tab12" class="tab-content">
-        <div class="section-title-inside">XII. Unrestricted File Upload: Find & Exploit (PHP) – Novice</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET XIII ============= -->
-      <div id="tab13" class="tab-content">
-        <div class="section-title-inside">XIII. Privilege Escalation: SUID Bit 1 – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET XIV ============= -->
-      <div id="tab14" class="tab-content">
-        <div class="section-title-inside">XIV. Lateral Movement with Metasploit – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET XV ============= -->
-      <div id="tab15" class="tab-content">
-        <div class="section-title-inside">XV. Reverse Shells – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
-      <!-- ============= ONGLET XVI ============= -->
-      <div id="tab16" class="tab-content">
-        <div class="section-title-inside">XVI. File Transfers and Data Exfiltration – Advanced</div>
-        <p style="color:#ccc; font-size:17px;">À compléter…</p>
-      </div>
-
+        <b>b) Interesting Files</b><br>
+        <span style="color:#ccc;">
+          Métadonnées Exif : utilisez <b>exiftool</b><br>
+          <code>exiftool -gpsposition# &lt;image&gt;</code>
+        </span>
+      </p>
     </div>
   </div>
+
+  <!-- Contenu vide des autres sections (à remplir plus tard) -->
+  <div id="s2" class="content"><div class="section-title">II. Active Information Gathering</div>À compléter…</div>
+  <div id="s3" class="content"><div class="section-title">III. AD Recon</div>À compléter…</div>
+  <div id="s4" class="content"><div class="section-title">IV. Phishing Campaign</div>À compléter…</div>
+
+  <div id="s5" class="content"><div class="section-title">V. Nmap Basics</div>À compléter…</div>
+  <div id="s6" class="content"><div class="section-title">VI. Greenbone</div>À compléter…</div>
+  <div id="s7" class="content"><div class="section-title">VII. Password Spray</div>À compléter…</div>
+  <div id="s8" class="content"><div class="section-title">VIII. WPScan</div>À compléter…</div>
+
+  <div id="s9" class="content"><div class="section-title">IX. Macro Malware</div>À compléter…</div>
+  <div id="s10" class="content"><div class="section-title">X. Tomcat LSASS Dump</div>À compléter…</div>
+  <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload Exploit</div>À compléter…</div>
+  <div id="s12" class="content"><div class="section-title">XII. PHP Upload Exploit</div>À compléter…</div>
+
+  <div id="s13" class="content"><div class="section-title">XIII. SUID Escalation</div>À compléter…</div>
+  <div id="s14" class="content"><div class="section-title">XIV. Metasploit Movement</div>À compléter…</div>
+  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells</div>À compléter…</div>
+  <div id="s16" class="content"><div class="section-title">XVI. Exfiltration</div>À compléter…</div>
+
 </div>
 
 <script>
-  const tabs = document.querySelectorAll('.tab');
-  const tabContents = document.querySelectorAll('.tab-content');
+  // CARROUSEL TITRES
+  let index = 0;
+  const carousel = document.getElementById("carousel");
+  const groups = document.querySelectorAll(".title-group");
+
+  document.getElementById("rightArrow").onclick = () => {
+    index = Math.min(index + 1, groups.length - 1);
+    carousel.style.transform = `translateX(${-index * 100}%)`;
+  };
+
+  document.getElementById("leftArrow").onclick = () => {
+    index = Math.max(index - 1, 0);
+    carousel.style.transform = `translateX(${-index * 100}%)`;
+  };
+
+  // CONTENU DES SECTIONS
+  const tabs = document.querySelectorAll(".tab");
+  const contents = document.querySelectorAll(".content");
 
   tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetId = tab.getAttribute('data-tab');
+    tab.addEventListener("click", () => {
 
-      tabs.forEach(t => t.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
 
-      tab.classList.add('active');
-      document.getElementById(targetId).classList.add('active');
+      contents.forEach(c => c.classList.remove("active"));
+      document.getElementById(tab.dataset.target).classList.add("active");
 
-      // Remonter en haut de la page à chaque changement d’onglet
       window.scrollTo(0, 0);
     });
   });
