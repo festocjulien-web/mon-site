@@ -17,7 +17,7 @@ document.getElementById("leftArrow").onclick = () => {
 
 
 /* =========================================================
-   CHANGEMENT DE SECTION VIA TABS
+   SECTIONS (TABS)
    ========================================================= */
 const tabs = document.querySelectorAll(".tab");
 const contents = document.querySelectorAll(".content");
@@ -36,7 +36,7 @@ tabs.forEach(tab => {
 
 
 /* =========================================================
-   ACCORDEONS (SLIDE + FADE + RE-CALCUL PARENTS)
+   ACCORDÉONS — SYSTÈME AUTO-HEIGHT ANIMÉ (AUCUN CONTENU TRONQUÉ)
    ========================================================= */
 
 function toggleAcc(id) {
@@ -45,32 +45,64 @@ function toggleAcc(id) {
 
     if (!body) return;
 
-    const isOpen = body.classList.contains("open");
+    const isOpening = !body.classList.contains("open");
 
-    if (isOpen) {
-        // Fermeture
-        body.style.maxHeight = "0px";
-        body.style.opacity = "0";
-        body.classList.remove("open");
-
-        if (arrow) arrow.style.transform = "rotate(0deg)";
+    if (isOpening) {
+        openAccordion(body, arrow);
     } else {
-        // Ouverture
-        body.classList.add("open");
-
-        // Calcul dynamique de la hauteur
-        body.style.maxHeight = body.scrollHeight + "px";
-        body.style.opacity = "1";
-
-        if (arrow) arrow.style.transform = "rotate(90deg)";
+        closeAccordion(body, arrow);
     }
 
-    // Correction ULTRA IMPORTANTE :
-    // on remonte l’arborescence et on recalcule les parents ouverts
+    // IMPORTANT : recalcul dynamique pour tous les parents
+    updateParentHeights(body);
+}
+
+/* --- Fonction d'ouverture --- */
+function openAccordion(body, arrow) {
+    body.classList.add("open");
+
+    // Étape 1 : fixer hauteur actuelle (0 → auto simulé)
+    body.style.maxHeight = "0px";
+    body.style.opacity = "0";
+
+    // Étape 2 : forcer un reflow
+    void body.offsetHeight;
+
+    // Étape 3 : animer vers la vraie hauteur
+    const fullHeight = body.scrollHeight + "px";
+
+    body.style.maxHeight = fullHeight;
+    body.style.opacity = "1";
+
+    if (arrow) arrow.style.transform = "rotate(90deg)";
+}
+
+/* --- Fonction de fermeture --- */
+function closeAccordion(body, arrow) {
+    const fullHeight = body.scrollHeight + "px";
+
+    // Fixer la hauteur actuelle avant de l'animer
+    body.style.maxHeight = fullHeight;
+    body.style.opacity = "1";
+
+    // Reflow
+    void body.offsetHeight;
+
+    // Puis animer vers 0
+    body.style.maxHeight = "0px";
+    body.style.opacity = "0";
+
+    body.classList.remove("open");
+
+    if (arrow) arrow.style.transform = "rotate(0deg)";
+}
+
+/* --- Mise à jour automatique des hauteurs parents --- */
+function updateParentHeights(body) {
     let parent = body.parentElement;
 
     while (parent) {
-        if (parent.classList.contains("acc-body") && parent.classList.contains("open")) {
+        if (parent.classList && parent.classList.contains("acc-body") && parent.classList.contains("open")) {
             parent.style.maxHeight = parent.scrollHeight + "px";
         }
         parent = parent.parentElement;
