@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>OSINT & Cyber Liste</title>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -11,8 +12,12 @@
     padding: 20px;
   }
 
-  .title {
-    font-size: 32px;
+  .section {
+    margin-bottom: 25px;
+  }
+
+  .section-title {
+    font-size: 26px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
@@ -25,73 +30,28 @@
     transition: transform 0.3s;
   }
 
-  .content {
-    margin-top: 15px;
+  .section-content {
     display: none;
-    padding-left: 20px;
+    padding-left: 25px;
+    margin-top: 10px;
     font-size: 20px;
     line-height: 1.6;
   }
 
   .item {
-    margin-bottom: 10px;
-  }
-
-  .subtitle {
-    font-size: 18px;
-    margin-left: 20px;
-    margin-top: 5px;
+    margin-bottom: 8px;
   }
 </style>
+
 </head>
 <body>
 
-<div class="title" onclick="toggleContent()">
-  <span class="arrow" id="arrow">▶</span>
-  <span>I. Introduction to OSINT</span>
-</div>
+<!-- ===================== SECTION I ===================== -->
+<div class="section">
+  <div class="section-title" onclick="toggle('c1','a1')">
+    <span id="a1" class="arrow">▶</span>
+    I. Introduction to OSINT
+  </div>
 
-<div class="content" id="content">
-
-  <div class="item"><b>1) Search Engines</b></div>
-  <div class="item"><b>2) Phishing Email</b></div>
-  <div class="item"><b>3) Creative Approach</b></div>
-  <div class="item"><b>4) Find Further Information</b></div>
-  <div class="item"><b>5) Explore the Website</b></div>
-
-  <br>
-
-  <div class="item">II. Active Information Gathering – <b>Advanced</b></div>
-  <div class="item">III. Windows Active Directory Reconnaissance Basic Tools – <b>Advanced</b></div>
-  <div class="item">IV. Setting up a Phishing Campaign – <b>Advanced</b></div>
-  <div class="item">V. Nmap: Basics – <b>Intermediate</b></div>
-  <div class="item">VI. Greenbone Vulnerability Management – <b>Intermediate</b></div>
-  <div class="item">VII. Password Spraying – <b>Advanced</b></div>
-  <div class="item">VIII. Vulnerability Assessment: Wordpress with WPScan – <b>Advanced</b></div>
-  <div class="item">IX. Microsoft Office Macro Malware – <b>Advanced</b></div>
-  <div class="item">X. Malicious Tomcat War File and LSASS Dump – <b>Advanced</b></div>
-  <div class="item">XI. Unrestricted File Upload: Find & Exploit (NodeJS) – <b>Advanced</b></div>
-  <div class="item">XII. Unrestricted File Upload: Find & Exploit (PHP) – <b>Novice</b></div>
-  <div class="item">XIII. Privilege Escalation: SUID Bit 1 – <b>Advanced</b></div>
-  <div class="item">XIV. Lateral Movement with Metasploit – <b>Advanced</b></div>
-  <div class="item">XV. Reverse Shells – <b>Advanced</b></div>
-  <div class="item">XVI. File Transfers and Data Exfiltration – <b>Advanced</b></div>
-
-</div>
-
-<script>
-function toggleContent() {
-  const content = document.getElementById("content");
-  const arrow = document.getElementById("arrow");
-  if (content.style.display === "none") {
-    content.style.display = "block";
-    arrow.style.transform = "rotate(90deg)";
-  } else {
-    content.style.display = "none";
-    arrow.style.transform = "rotate(0deg)";
-  }
-}
-</script>
-
-</body>
-</html>
+  <div id="c1" class="section-content">
+    <div class
