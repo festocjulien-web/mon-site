@@ -1,171 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>PECB Hacker – Aide mémoire</title>
+  <meta charset="UTF-8">
+  <title>PECB Hacker – Aide Mémoire</title>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-  }
+  <!-- CSS externe -->
+  <link rel="stylesheet" href="style.css">
 
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  /* ===== CARROUSEL TITRES ===== */
-  .carousel-wrapper {
-    position: relative;
-    overflow: hidden;
-    padding: 10px 0;
-  }
-
-  .carousel {
-    display: flex;
-    gap: 10px;
-    transition: transform 0.5s ease;
-  }
-
-  .title-group {
-    display: flex;
-    gap: 10px;
-    min-width: 100%;
-    justify-content: center;
-  }
-
-  .tab {
-    background: #222;
-    padding: 10px 15px;
-    border-radius: 6px;
-    border: 1px solid #333;
-    cursor: pointer;
-    color: #ccc;
-    font-size: 16px;
-    min-width: 150px;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .tab:hover {
-    background: #333;
-  }
-
-  .tab.active {
-    background: #4da3ff;
-    color: #000;
-    border-color: #4da3ff;
-  }
-
-  /* ===== FLECHES ===== */
-  .arrow {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    background: #222;
-    color: #4da3ff;
-    padding: 10px 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 24px;
-    border: 1px solid #333;
-  }
-
-  .arrow:hover {
-    background: #4da3ff;
-    color: #000;
-  }
-
-  #leftArrow { left: -5px; }
-  #rightArrow { right: -5px; }
-
-  /* ===== CONTENU DE SECTION ===== */
-  .content {
-    margin-top: 25px;
-    background: #181818;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 20px;
-    display: none;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .content.active {
-    display: block;
-  }
-
-  .section-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-
-  .item {
-    margin-bottom: 15px;
-  }
-
-  code {
-    background: #000;
-    padding: 3px 5px;
-    border-radius: 4px;
-  }
-
-  a {
-    color: #4da3ff;
-    text-decoration: none;
-  }
-
-  /* ===== ACCORDEONS ===== */
-  .acc-item {
-    margin-bottom: 12px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 8px;
-  }
-
-  .acc-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  .acc-header:hover {
-    color: #4da3ff;
-  }
-
-  .acc-arrow {
-    display: inline-block;
-    transition: transform 0.2s;
-  }
-
-  .acc-body {
-    margin-top: 8px;
-    margin-left: 22px;
-    font-size: 17px;
-    color: #ccc;
-    line-height: 1.6;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-  }
-</style>
-
+  <!-- JS externe -->
+  <script src="script.js" defer></script>
 </head>
+
 <body>
 
 <div class="container">
@@ -216,8 +61,9 @@
 
   <!-- ==== CONTENU DES SECTIONS ==== -->
 
-  <!-- I. OSINT -->
+  <!-- SECTION I -->
   <div id="s1" class="content active">
+
     <div class="section-title">I. Introduction to OSINT</div>
 
     <!-- 1) Search Engines -->
@@ -229,20 +75,16 @@
       <div id="acc1" class="acc-body">
         Par exemple, sur Google, si vous souhaitez rechercher le contenu d'un site web spécifique,
         vous pouvez utiliser le mot-clé <b>site:</b>.<br><br>
-        Ainsi, si vous souhaitez obtenir uniquement les résultats provenant de pastebin.com,
-        vous pouvez inclure la requête : <b>site:pastebin.com</b>.<br><br>
 
-        Dans votre recherche Google, vous pouvez également préciser ces termes grâce
-        à la recherche avancée de Google.<br><br>
+        Ainsi, pour obtenir uniquement les résultats provenant de pastebin.com :
+        <b>site:pastebin.com</b><br><br>
 
-        Pour d'autres exemples similaires, vous pouvez consulter la
+        Vous pouvez aussi préciser la recherche dans Google via les filtres avancés.<br><br>
+
+        Consultez aussi :  
         <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">
-          base de données de piratage de Google
-        </a>.<br><br>
-
-        Notez toutefois que les exemples qui s'y trouvent sont davantage axés sur la recherche
-        de sites web vulnérables et autres problèmes de ce type. Vous n'aurez pas besoin
-        d'appliquer ces techniques dans ce module.
+          La Google Hacking Database
+        </a>.
       </div>
     </div>
 
@@ -264,15 +106,10 @@
         3) Creative Approach
       </div>
       <div id="acc3" class="acc-body">
-        À ce stade, vous pourriez tenter d'utiliser directement l'adresse e-mail trouvée
-        pour interroger différentes bases de données.<br><br>
-
-        Vous pouvez également essayer de deviner les noms d'utilisateur utilisés par le
-        propriétaire de cette adresse et rechercher d'éventuels comptes en ligne sur
-        d'autres plateformes.<br><br>
-
-        De même, vous pourriez essayer de deviner d'autres adresses e-mail utilisées
-        par cette personne et effectuer des recherches sur Internet à leur sujet.
+        Vous pouvez essayer :
+        <br>- D’utiliser l’adresse email trouvée pour interroger des bases de données  
+        <br>- De deviner d’autres usernames  
+        <br>- De chercher si l’utilisateur existe sur d’autres plateformes
       </div>
     </div>
 
@@ -283,36 +120,21 @@
         4) Find Further Information
       </div>
       <div id="acc4" class="acc-body">
-        La recherche de noms ou de noms d'utilisateur est généralement plus efficace avec des
-        outils personnalisés. Ces outils interrogent directement les différentes sources et ne
-        dépendent pas des moteurs de recherche qui, pour diverses raisons, n'ont peut-être pas
-        indexé les informations pertinentes.<br><br>
+        Les outils personnalisés sont souvent plus efficaces que Google.<br><br>
 
-        Cette approche est évidemment beaucoup plus rapide que de parcourir manuellement chaque site web.<br><br>
+        Par exemple :  
+        <a href="https://usersearch.org" target="_blank">usersearch.org</a><br><br>
 
-        Pour les noms d'utilisateur, par exemple, un site comme
-        <a href="https://usersearch.org" target="_blank">usersearch.org</a>
-        est très utile. Si, grâce à ces outils, vous constatez qu'un site de réseau social peut
-        contenir des informations complémentaires liées à votre recherche, vous pouvez alors
-        les examiner directement.<br><br>
+        Sites spécialisés :  
+        <a href="https://pipl.com" target="_blank">pipl.com</a> —  
+        <a href="https://spokeo.com" target="_blank">spokeo.com</a><br><br>
 
-        <b>Remarque :</b> Sachez que ces sites peuvent donner des résultats pertinents, mais aussi
-        de faux positifs.<br><br>
-
-        Il existe également des sites web conçus spécifiquement pour la recherche de personnes,
-        tels que <a href="https://pipl.com" target="_blank">pipl.com</a>
-        ou <a href="https://www.spokeo.com" target="_blank">spokeo.com</a>.
-        Cependant, vous n'aurez pas besoin d'utiliser ces moteurs de recherche dans ce module.<br><br>
-
-        De manière générale, il n'est pas nécessaire d'essayer tous les outils présentés dans
-        ce module, et sachez que certains sont payants. Cependant, lorsque vous vous lancez seul,
-        le site web
+        Framework OSINT complet :  
         <a href="https://osintframework.com" target="_blank">osintframework.com</a>
-        constitue un bon point de départ pour trouver une liste d'outils adaptés à différents usages.
       </div>
     </div>
 
-    <!-- 5) Explore the Website (ACCORDÉON PRINCIPAL) -->
+    <!-- 5) Explore the Website -->
     <div class="acc-item">
       <div class="acc-header" onclick="toggleAcc('acc5')">
         <span id="acc5-arrow" class="acc-arrow">▶</span>
@@ -321,180 +143,98 @@
 
       <div id="acc5" class="acc-body">
 
-        <!-- 5a) Contents of the Website -->
-        <div class="acc-item" style="margin-top:10px;">
+        <!-- 5a -->
+        <div class="acc-item">
           <div class="acc-header" onclick="toggleAcc('acc5a')">
             <span id="acc5a-arrow" class="acc-arrow">▶</span>
             a) Contents of the Website
           </div>
           <div id="acc5a" class="acc-body">
-            Parcourez les différentes pages du site, y compris les sections moins visibles, afin de
-            repérer des informations utiles, des noms, des adresses e-mail, des mentions légales,
-            des fichiers PDF ou d'autres documents publiquement accessibles.<br><br>
-
-            Pour la tâche suivante, gardez à l'esprit que tout le contenu intéressant n'est pas
-            forcément affiché sur le site web. Le code source d'un site peut également contenir des
-            informations importantes. Par exemple, vous pourriez déterminer la technologie utilisée
-            pour sa création et trouver d'autres indices similaires permettant de trouver des sites web
-            liés à celui que vous étudiez.<br><br>
-
-            Par exemple, un site comme
+            Pensez à inspecter le code source,  
+            les pages cachées, les PDFs,  
+            et utilisez des services comme :
             <a href="https://urlscan.io" target="_blank">urlscan.io</a>
-            peut vous suggérer des sites similaires à celui que vous avez analysé, en fonction de leur structure.<br><br>
-
-            Il est utile de savoir que pour analyser le contenu d'un site web, vous pouvez exploiter
-            différents caches. Par exemple, Google met en cache le contenu des sites web ; ainsi,
-            si vous trouvez un site web via une recherche Google, vous pourrez peut-être consulter
-            une version antérieure.
           </div>
         </div>
 
-        <!-- 5b) Interesting Files -->
-        <div class="acc-item" style="margin-top:10px;">
+        <!-- 5b -->
+        <div class="acc-item">
           <div class="acc-header" onclick="toggleAcc('acc5b')">
             <span id="acc5b-arrow" class="acc-arrow">▶</span>
             b) Interesting Files
           </div>
           <div id="acc5b" class="acc-body">
-            Les métadonnées d'un fichier peuvent parfois s'avérer intéressantes.
-            Dans les images, elles sont stockées au format <b>Exif</b>.<br><br>
+            Les métadonnées EXIF peuvent révéler :
+            <br>- GPS  
+            <br>- Appareil utilisé  
+            <br>- Logiciels utilisés<br><br>
 
-            Divers outils en ligne permettent d'analyser les données Exif (par exemple,
-            <a href="https://jimpl.com" target="_blank">jimpl.com</a>).  
-            En ligne de commande, vous pouvez utiliser l'outil <b>exiftool</b>.<br><br>
-
-            Voici un exemple d'extraction des coordonnées GPS d'une image avec exiftool :<br>
-            <code>exiftool -gpsposition# &lt;fichier_image&gt;</code>
+            Exemple :  
+            <code>exiftool -gpsposition# image.jpg</code>
           </div>
         </div>
 
       </div>
     </div>
 
-  </div>
+  </div> <!-- FIN SECTION I -->
 
-  <!-- II. Active Info -->
+
+  <!-- SECTION II -->
   <div id="s2" class="content">
     <div class="section-title">II. Active Information Gathering – Advanced</div>
 
-    <!-- 1) Port Scanning -->
     <div class="acc-item">
       <div class="acc-header" onclick="toggleAcc('s2acc1')">
         <span id="s2acc1-arrow" class="acc-arrow">▶</span>
         1) Port Scanning
       </div>
-      <div id="s2acc1" class="acc-body">
-        <!-- contenu à ajouter ici si besoin -->
-      </div>
+      <div id="s2acc1" class="acc-body"></div>
     </div>
 
-    <!-- 2) Misconfigured Services -->
     <div class="acc-item">
       <div class="acc-header" onclick="toggleAcc('s2acc2')">
         <span id="s2acc2-arrow" class="acc-arrow">▶</span>
         2) Misconfigured Services
       </div>
-      <div id="s2acc2" class="acc-body">
-        <!-- contenu à ajouter ici si besoin -->
-      </div>
+      <div id="s2acc2" class="acc-body"></div>
     </div>
 
-    <!-- 3) Directory Enumeration -->
     <div class="acc-item">
       <div class="acc-header" onclick="toggleAcc('s2acc3')">
         <span id="s2acc3-arrow" class="acc-arrow">▶</span>
         3) Directory Enumeration
       </div>
-      <div id="s2acc3" class="acc-body">
-        <!-- contenu à ajouter ici si besoin -->
-      </div>
+      <div id="s2acc3" class="acc-body"></div>
     </div>
 
-    <!-- 4) Vulnerability Assessment -->
     <div class="acc-item">
       <div class="acc-header" onclick="toggleAcc('s2acc4')">
         <span id="s2acc4-arrow" class="acc-arrow">▶</span>
         4) Vulnerability Assessment
       </div>
-      <div id="s2acc4" class="acc-body">
-        <!-- contenu à ajouter ici si besoin -->
-      </div>
+      <div id="s2acc4" class="acc-body"></div>
     </div>
+
   </div>
 
-  <!-- AUTRES SECTIONS (VIDES POUR L'INSTANT) -->
-  <div id="s3" class="content"><div class="section-title">III. Windows Active Directory Reconnaissance Basic Tools – Advanced</div>À compléter…</div>
-  <div id="s4" class="content"><div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div>À compléter…</div>
-
-  <div id="s5" class="content"><div class="section-title">V. Nmap: Basics – Intermediate</div>À compléter…</div>
-  <div id="s6" class="content"><div class="section-title">VI. Greenbone Vulnerability Management – Intermediate</div>À compléter…</div>
-  <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div>À compléter…</div>
-  <div id="s8" class="content"><div class="section-title">VIII. Vulnerability Assessment: Wordpress with WPScan – Advanced</div>À compléter…</div>
-
-  <div id="s9" class="content"><div class="section-title">IX. Microsoft Office Macro Malware – Advanced</div>À compléter…</div>
-  <div id="s10" class="content"><div class="section-title">X. Malicious Tomcat War File and LSASS Dump – Advanced</div>À compléter…</div>
-  <div id="s11" class="content"><div class="section-title">XI. Unrestricted File Upload: Find & Exploit (NodeJS) – Advanced</div>À compléter…</div>
-  <div id="s12" class="content"><div class="section-title">XII. Unrestricted File Upload: Find & Exploit (PHP) – Novice</div>À compléter…</div>
-
-  <div id="s13" class="content"><div class="section-title">XIII. Privilege Escalation: SUID Bit 1 – Advanced</div>À compléter…</div>
-  <div id="s14" class="content"><div class="section-title">XIV. Lateral Movement with Metasploit – Advanced</div>À compléter…</div>
-  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div>À compléter…</div>
-  <div id="s16" class="content"><div class="section-title">XVI. File Transfers and Data Exfiltration – Advanced</div>À compléter…</div>
+  <!-- AUTRES SECTIONS VIDES -->
+  <div id="s3" class="content"><div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div></div>
+  <div id="s4" class="content"><div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div></div>
+  <div id="s5" class="content"><div class="section-title">V. Nmap: Basics – Intermediate</div></div>
+  <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div></div>
+  <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div></div>
+  <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
+  <div id="s9" class="content"><div class="section-title">IX. Macro Malware – Advanced</div></div>
+  <div id="s10" class="content"><div class="section-title">X. Tomcat & LSASS Dump – Advanced</div></div>
+  <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload – Advanced</div></div>
+  <div id="s12" class="content"><div class="section-title">XII. PHP Upload – Novice</div></div>
+  <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div></div>
+  <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
+  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
+  <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
 
 </div>
-
-<script>
-  // CARROUSEL TITRES
-  let index = 0;
-  const carousel = document.getElementById("carousel");
-  const groups = document.querySelectorAll(".title-group");
-
-  document.getElementById("rightArrow").onclick = () => {
-    index = Math.min(index + 1, groups.length - 1);
-    carousel.style.transform = `translateX(${-index * 100}%)`;
-  };
-
-  document.getElementById("leftArrow").onclick = () => {
-    index = Math.max(index - 1, 0);
-    carousel.style.transform = `translateX(${-index * 100}%)`;
-  };
-
-  // CONTENU DES SECTIONS
-  const tabs = document.querySelectorAll(".tab");
-  const contents = document.querySelectorAll(".content");
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-
-      contents.forEach(c => c.classList.remove("active"));
-      document.getElementById(tab.dataset.target).classList.add("active");
-
-      window.scrollTo(0, 0);
-    });
-  });
-
-  // ACCORDEONS AVEC SLIDE + FADE
-  function toggleAcc(id) {
-    const body = document.getElementById(id);
-    const arrow = document.getElementById(id + "-arrow");
-
-    if (!body) return;
-
-    const isOpen = body.style.maxHeight && body.style.maxHeight !== "0px";
-
-    if (isOpen) {
-      body.style.maxHeight = "0px";
-      body.style.opacity = "0";
-      if (arrow) arrow.style.transform = "rotate(0deg)";
-    } else {
-      body.style.maxHeight = body.scrollHeight + "px";
-      body.style.opacity = "1";
-      if (arrow) arrow.style.transform = "rotate(90deg)";
-    }
-  }
-</script>
 
 </body>
 </html>
