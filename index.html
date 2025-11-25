@@ -331,153 +331,66 @@ dans la vue <b>« Arborescence »</b> (onglet Résultats).
   </div>
 
   <!-- AUTRES SECTIONS VIDES -->
-  <div id="s3" class="content">
-  <div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div>
-
-  <!-- 1) Getting Your Bearings -->
   <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s3acc1')">
-      <span id="s3acc1-arrow" class="acc-arrow">▶</span>
-      Getting Your Bearings
-    </div>
+  <div class="acc-header" onclick="toggleAcc('s3acc1')">
+    <span id="s3acc1-arrow" class="acc-arrow">▶</span>
+    1) Getting Your Bearings
+  </div>
+
+  <div id="s3acc1" class="acc-body">
+
+    <b>Command Prompt</b><br><br>
+    Le <b>Command Prompt (cmd.exe)</b> est un ancien interpréteur de commandes Windows,
+    mais il reste utile pour la reconnaissance.<br><br>
+
+    Les variables d’environnement se référencent entre les caractères <code>%</code> :
+
+    <pre><code>echo %<ENVIRONMENT VARIABLE>%</code></pre>
+
+    Afficher toutes les variables d’environnement :
+
+    <pre><code>set</code></pre>
+
+    Afficher uniquement celles commençant par USER :
+
+    <pre><code>set USER</code></pre>
+
     <br><br>
-<b>Command Prompt</b><br><br>
 
-Le <b>Command Prompt (cmd.exe)</b> est un ancien interpréteur de commandes Windows,  
-mais il reste encore utile pour la reconnaissance.<br><br>
+    <b>PowerShell</b><br><br>
 
-Les variables d’environnement se référencent entre les caractères <code>%</code> :
+    PowerShell est une alternative moderne, plus puissante que cmd.exe.<br><br>
 
-<pre><code>echo %<ENVIRONMENT VARIABLE>%</code></pre>
+    Référencer une variable d’environnement :
 
-Afficher toutes les variables d’environnement :
+    <pre><code>$Env:<ENVIRONMENT VARIABLE></code></pre>
 
-<pre><code>set</code></pre>
+    Exemple :
 
-Afficher uniquement les variables commençant par "USER" :
+    <pre><code>echo $Env:PSModulePath</code></pre>
 
-<pre><code>set USER</code></pre>
+    Lister toutes les variables :
 
-Ces valeurs permettent d'obtenir des informations utiles :
-– nom d'utilisateur  
-– domaine utilisateur  
-– nom de la machine  
-– chemins système, etc.<br><br>
+    <pre><code>dir Env:</code></pre>
 
+    Exemple avec .NET :
 
-<b>PowerShell</b><br><br>
+    <pre><code>[System.Net.Dns]::GetHostName()</code></pre>
 
-<b>PowerShell</b> est une alternative moderne, beaucoup plus puissante que cmd.exe.  
-Il permet de résoudre toutes les étapes de reconnaissance AD uniquement avec ce shell.<br><br>
+    <br>
 
-Les variables d’environnement se référencent avec la syntaxe :
+    <b>Commandes communes CMD + PowerShell :</b>
 
-<pre><code>$Env:<ENVIRONMENT VARIABLE></code></pre>
+    <pre><code>hostname</code></pre>
 
-Exemple : afficher le chemin PSModulePath :
+    <pre><code>whoami</code></pre>
 
-<pre><code>echo $Env:PSModulePath</code></pre>
+    <pre><code>systeminfo</code></pre>
 
-Lister toutes les variables d’environnement :
-
-<pre><code>dir Env:</code></pre>
-
-PowerShell permet aussi d'utiliser les classes .NET.  
-Exemple : obtenir le hostname via System.Net.Dns :
-
-<pre><code>[System.Net.Dns]::GetHostName()</code></pre>
-
-C’est puissant mais peut devenir complexe.<br><br>
-
-
-<b>Commandes communes aux deux environnements :</b>
-
-Afficher le hostname :
-
-<pre><code>hostname</code></pre>
-
-Afficher l’utilisateur actuel :
-
-<pre><code>whoami</code></pre>
-
-Afficher des informations système, dont le domaine :
-
-<pre><code>systeminfo</code></pre>
-
-
-<b>Autre commande pour récupérer le domaine :</b>
-
-<pre><code>wmic computersystem get domain</code></pre>
+    <pre><code>wmic computersystem get domain</code></pre>
 
   </div>
-
-  <!-- 2) Active Directory Explorer -->
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s3acc2')">
-      <span id="s3acc2-arrow" class="acc-arrow">▶</span>
-      Active Directory Explorer
-    </div>
-    <div id="s3acc2" class="acc-body">
-
-      <!-- a) Loading -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s3acc2a')">
-          <span id="s3acc2a-arrow" class="acc-arrow">▶</span>
-          1) Loading
-        </div>
-        <div id="s3acc2a" class="acc-body">
-          Charger une base AD locale ou un fichier sauvegardé (database snapshot).
-        </div>
-      </div>
-
-      <!-- b) Connecting to Domain -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s3acc2b')">
-          <span id="s3acc2b-arrow" class="acc-arrow">▶</span>
-          2) Connecting to Domain
-        </div>
-        <div id="s3acc2b" class="acc-body">
-          Connexion au domaine via LDAP / LDAPS pour explorer les objets en direct.
-        </div>
-      </div>
-
-      <!-- c) Features -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s3acc2c')">
-          <span id="s3acc2c-arrow" class="acc-arrow">▶</span>
-          3) Features
-        </div>
-        <div id="s3acc2c" class="acc-body">
-          Recherche d’objets AD, navigation dans les OU, inspection des attributs,
-          export CSV/HTML, génération de rapports, résolution de SID, etc.
-        </div>
-      </div>
-
-      <!-- d) Snapshots -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s3acc2d')">
-          <span id="s3acc2d-arrow" class="acc-arrow">▶</span>
-          4) Snapshots
-        </div>
-        <div id="s3acc2d" class="acc-body">
-          Création de snapshots AD pour comparer l'état du domaine à différentes dates.
-        </div>
-      </div>
-
-      <!-- e) Comparing -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s3acc2e')">
-          <span id="s3acc2e-arrow" class="acc-arrow">▶</span>
-          5) Comparing
-        </div>
-        <div id="s3acc2e" class="acc-body">
-          Comparaison entre deux snapshots afin de repérer les changements :
-          nouveaux comptes, modifications de groupes, suppressions, etc.
-        </div>
-      </div>
-
-    </div>
-  </div>
+</div>
 
 </div>
 
