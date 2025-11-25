@@ -340,11 +340,75 @@ dans la vue <b>« Arborescence »</b> (onglet Résultats).
       <span id="s3acc1-arrow" class="acc-arrow">▶</span>
       Getting Your Bearings
     </div>
-    <div id="s3acc1" class="acc-body">
-      Introduction générale à la structure Active Directory, aux contrôleurs de domaine,
-      aux outils disponibles et aux objectifs d'une première reconnaissance (OU, groupes,
-      comptes, politiques, etc.).
-    </div>
+    <br><br>
+<b>Command Prompt</b><br><br>
+
+Le <b>Command Prompt (cmd.exe)</b> est un ancien interpréteur de commandes Windows,  
+mais il reste encore utile pour la reconnaissance.<br><br>
+
+Les variables d’environnement se référencent entre les caractères <code>%</code> :
+
+<pre><code>echo %<ENVIRONMENT VARIABLE>%</code></pre>
+
+Afficher toutes les variables d’environnement :
+
+<pre><code>set</code></pre>
+
+Afficher uniquement les variables commençant par "USER" :
+
+<pre><code>set USER</code></pre>
+
+Ces valeurs permettent d'obtenir des informations utiles :
+– nom d'utilisateur  
+– domaine utilisateur  
+– nom de la machine  
+– chemins système, etc.<br><br>
+
+
+<b>PowerShell</b><br><br>
+
+<b>PowerShell</b> est une alternative moderne, beaucoup plus puissante que cmd.exe.  
+Il permet de résoudre toutes les étapes de reconnaissance AD uniquement avec ce shell.<br><br>
+
+Les variables d’environnement se référencent avec la syntaxe :
+
+<pre><code>$Env:<ENVIRONMENT VARIABLE></code></pre>
+
+Exemple : afficher le chemin PSModulePath :
+
+<pre><code>echo $Env:PSModulePath</code></pre>
+
+Lister toutes les variables d’environnement :
+
+<pre><code>dir Env:</code></pre>
+
+PowerShell permet aussi d'utiliser les classes .NET.  
+Exemple : obtenir le hostname via System.Net.Dns :
+
+<pre><code>[System.Net.Dns]::GetHostName()</code></pre>
+
+C’est puissant mais peut devenir complexe.<br><br>
+
+
+<b>Commandes communes aux deux environnements :</b>
+
+Afficher le hostname :
+
+<pre><code>hostname</code></pre>
+
+Afficher l’utilisateur actuel :
+
+<pre><code>whoami</code></pre>
+
+Afficher des informations système, dont le domaine :
+
+<pre><code>systeminfo</code></pre>
+
+
+<b>Autre commande pour récupérer le domaine :</b>
+
+<pre><code>wmic computersystem get domain</code></pre>
+
   </div>
 
   <!-- 2) Active Directory Explorer -->
