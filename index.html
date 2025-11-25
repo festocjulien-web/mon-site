@@ -1,2 +1,82 @@
-<h1>Bienvenue</h1>
-<p>Voici mes informations.</p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OSINT & Cyber Liste</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
+
+  .arrow {
+    transition: transform 0.3s;
+  }
+
+  .content {
+    margin-top: 15px;
+    display: none;
+    padding-left: 20px;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .item {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="title" onclick="toggleContent()">
+  <span class="arrow" id="arrow">▶</span>
+  <span>Liste de formations</span>
+</div>
+
+<div class="content" id="content">
+  <div class="item">Introduction to OSINT – <b>Advanced</b></div>
+  <div class="item">Active Information Gathering – <b>Advanced</b></div>
+  <div class="item">Windows Active Directory Reconnaissance Basic Tools – <b>Advanced</b></div>
+  <div class="item">Setting up a Phishing Campaign – <b>Advanced</b></div>
+  <div class="item">Nmap: Basics – <b>Intermediate</b></div>
+  <div class="item">Greenbone Vulnerability Management – <b>Intermediate</b></div>
+  <div class="item">Password Spraying – <b>Advanced</b></div>
+  <div class="item">Vulnerability Assessment: Wordpress with WPScan – <b>Advanced</b></div>
+  <div class="item">Microsoft Office Macro Malware – <b>Advanced</b></div>
+  <div class="item">Malicious Tomcat War File and LSASS Dump – <b>Advanced</b></div>
+  <div class="item">Unrestricted File Upload: Find & Exploit (NodeJS) – <b>Advanced</b></div>
+  <div class="item">Unrestricted File Upload: Find & Exploit (PHP) – <b>Novice</b></div>
+  <div class="item">Privilege Escalation: SUID Bit 1 – <b>Advanced</b></div>
+  <div class="item">Lateral Movement with Metasploit – <b>Advanced</b></div>
+  <div class="item">Reverse Shells – <b>Advanced</b></div>
+  <div class="item">File Transfers and Data Exfiltration – <b>Advanced</b></div>
+</div>
+
+<script>
+function toggleContent() {
+  const content = document.getElementById("content");
+  const arrow = document.getElementById("arrow");
+  if (content.style.display === "none") {
+    content.style.display = "block";
+    arrow.style.transform = "rotate(90deg)";
+  } else {
+    content.style.display = "none";
+    arrow.style.transform = "rotate(0deg)";
+  }
+}
+</script>
+
+</body>
+</html>
