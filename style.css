@@ -139,12 +139,14 @@ h1 {
     color: #ccc;
     line-height: 1.6;
 
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-
-    transition: max-height 0.35s ease, opacity 0.35s ease;
+    /* plus d'animation compliquée */
+    display: none;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
+    transition: none;
 }
+
 
 code {
     background: #000;
