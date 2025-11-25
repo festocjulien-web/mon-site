@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PECB Hacker – Aide Mémoire</title>
+
+  <!-- CSS externe -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS externe -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>PECB Certified Hacker – Aide mémoire</h1>
+
+  <!-- ==== CARROUSEL TITRES ==== -->
+  <div class="carousel-wrapper">
+    <div id="carousel" class="carousel">
+
+      <!-- Groupe 1 -->
+      <div class="title-group">
+        <div class="tab active" data-target="s1">I. OSINT</div>
+        <div class="tab" data-target="s2">II. Active Info</div>
+        <div class="tab" data-target="s3">III. AD Recon</div>
+        <div class="tab" data-target="s4">IV. Phishing</div>
+      </div>
+
+      <!-- Groupe 2 -->
+      <div class="title-group">
+        <div class="tab" data-target="s5">V. Nmap</div>
+        <div class="tab" data-target="s6">VI. Greenbone</div>
+        <div class="tab" data-target="s7">VII. Password Spray</div>
+        <div class="tab" data-target="s8">VIII. WPScan</div>
+      </div>
+
+      <!-- Groupe 3 -->
+      <div class="title-group">
+        <div class="tab" data-target="s9">IX. Macro Malware</div>
+        <div class="tab" data-target="s10">X. Tomcat LSASS</div>
+        <div class="tab" data-target="s11">XI. NodeJS Upload</div>
+        <div class="tab" data-target="s12">XII. PHP Upload</div>
+      </div>
+
+      <!-- Groupe 4 -->
+      <div class="title-group">
+        <div class="tab" data-target="s13">XIII. SUID</div>
+        <div class="tab" data-target="s14">XIV. Metasploit</div>
+        <div class="tab" data-target="s15">XV. Reverse Shells</div>
+        <div class="tab" data-target="s16">XVI. Exfiltration</div>
+      </div>
+
+    </div>
+
+    <div id="leftArrow" class="arrow">❮</div>
+    <div id="rightArrow" class="arrow">❯</div>
+  </div>
+
+  <!-- ==== CONTENU DES SECTIONS ==== -->
+
+  <!-- SECTION I -->
+  <div id="s1" class="content active">
+
+    <div class="section-title">I. Introduction to OSINT</div>
+
+    <!-- 1) Search Engines -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc1')">
+        <span id="acc1-arrow" class="acc-arrow">▶</span>
+        1) Search Engines
+      </div>
+      <div id="acc1" class="acc-body">
+        Par exemple, sur Google, si vous souhaitez rechercher le contenu d'un site web spécifique,
+        vous pouvez utiliser le mot-clé <b>site:</b>.<br><br>
+
+        Ainsi, pour obtenir uniquement les résultats provenant de pastebin.com :
+        <b>site:pastebin.com</b><br><br>
+
+        Vous pouvez aussi préciser la recherche dans Google via les filtres avancés.<br><br>
+
+        Consultez aussi :  
+        <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">
+          La Google Hacking Database
+        </a>.
+      </div>
+    </div>
+
+    <!-- 2) Phishing Email -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc2')">
+        <span id="acc2-arrow" class="acc-arrow">▶</span>
+        2) Phishing Email
+      </div>
+      <div id="acc2" class="acc-body">
+        Utiliser la recherche Google.
+      </div>
+    </div>
+
+    <!-- 3) Creative Approach -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc3')">
+        <span id="acc3-arrow" class="acc-arrow">▶</span>
+        3) Creative Approach
+      </div>
+      <div id="acc3" class="acc-body">
+        Vous pouvez essayer :
+        <br>- D’utiliser l’adresse email trouvée pour interroger des bases de données  
+        <br>- De deviner d’autres usernames  
+        <br>- De chercher si l’utilisateur existe sur d’autres plateformes
+      </div>
+    </div>
+
+    <!-- 4) Find Further Information -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc4')">
+        <span id="acc4-arrow" class="acc-arrow">▶</span>
+        4) Find Further Information
+      </div>
+      <div id="acc4" class="acc-body">
+        Les outils personnalisés sont souvent plus efficaces que Google.<br><br>
+
+        Par exemple :  
+        <a href="https://usersearch.org" target="_blank">usersearch.org</a><br><br>
+
+        Sites spécialisés :  
+        <a href="https://pipl.com" target="_blank">pipl.com</a> —  
+        <a href="https://spokeo.com" target="_blank">spokeo.com</a><br><br>
+
+        Framework OSINT complet :  
+        <a href="https://osintframework.com" target="_blank">osintframework.com</a>
+      </div>
+    </div>
+
+    <!-- 5) Explore the Website -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc5')">
+        <span id="acc5-arrow" class="acc-arrow">▶</span>
+        5) Explore the Website
+      </div>
+
+      <div id="acc5" class="acc-body">
+
+        <!-- 5a -->
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc('acc5a')">
+            <span id="acc5a-arrow" class="acc-arrow">▶</span>
+            a) Contents of the Website
+          </div>
+          <div id="acc5a" class="acc-body">
+            Pensez à inspecter le code source,  
+            les pages cachées, les PDFs,  
+            et utilisez des services comme :
+            <a href="https://urlscan.io" target="_blank">urlscan.io</a>
+          </div>
+        </div>
+
+        <!-- 5b -->
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc('acc5b')">
+            <span id="acc5b-arrow" class="acc-arrow">▶</span>
+            b) Interesting Files
+          </div>
+          <div id="acc5b" class="acc-body">
+            Les métadonnées EXIF peuvent révéler :
+            <br>- GPS  
+            <br>- Appareil utilisé  
+            <br>- Logiciels utilisés<br><br>
+
+            Exemple :  
+            <code>exiftool -gpsposition# image.jpg</code>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div> <!-- FIN SECTION I -->
+
+
+  <!-- SECTION II -->
+  <div id="s2" class="content">
+    <div class="section-title">II. Active Information Gathering – Advanced</div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc1')">
+        <span id="s2acc1-arrow" class="acc-arrow">▶</span>
+        1) Port Scanning
+      </div>
+      <div id="s2acc1" class="acc-body">
+  Exemple de scan avancé avec Nmap :<br><br>
+
+  <code>nmap -A scanme.nmap.org</code><br><br>
+
+  L’option <b>-A</b> active :<br>
+  • la détection d’OS<br>
+  • la détection de versions<br>
+  • le traceroute<br>
+  • les scripts NSE de base<br><br>
+
+  C’est l’une des commandes les plus utiles pour une reconnaissance rapide et complète.
+        PS: -A pour aggressif
+</div>
+
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc2')">
+        <span id="s2acc2-arrow" class="acc-arrow">▶</span>
+        2) Misconfigured Services
+      </div>
+      <div id="s2acc2" class="acc-body">
+
+  <!-- OWASP résumé -->
+  <b>OWASP Top 10 (Résumé)</b><br><br>
+
+  L’OWASP (<a href="https://owasp.org/www-project-top-ten/" target="_blank">Open Web Application Security Project</a>)
+  est une organisation de référence en cybersécurité, connue pour publier le
+  « Top 10 », un classement des risques de sécurité les plus importants dans les
+  applications web.  
+  Il sert de base aux audits, aux tests d’intrusion et aux bonnes pratiques de configuration.
+
+  <br><br>
+
+  <!-- SHODAN résumé -->
+  <b>Shodan (Résumé)</b><br><br>
+
+  <a href="https://www.shodan.io" target="_blank">Shodan</a> est un moteur de recherche spécialisé
+  permettant de trouver des services et équipements exposés sur Internet.  
+  Il identifie les ports ouverts, les services actifs et les appareils mal configurés.
+
+  <br><br>
+
+  <!-- Exemple réseau demandé -->
+  <b>Exemple Nmap (utile pour les services mal configurés)</b><br><br>
+
+  <code>
+PORT&nbsp;&nbsp;&nbsp;STATE&nbsp;SERVICE&nbsp;&nbsp;VERSION<br>
+21/tcp&nbsp;open&nbsp;&nbsp;ftp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vsftpd 3.0.3<br>
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+  </code>
+
+</div>
+
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc3')">
+        <span id="s2acc3-arrow" class="acc-arrow">▶</span>
+        3) Directory Enumeration
+      </div>
+      <div id="s2acc3" class="acc-body">
+
+  Après avoir cartographié l'infrastructure et obtenu l'accès au serveur FTP non sécurisé,
+  vous décidez d'analyser les informations fournies par l'application web.  
+  C'est généralement une mine d'or pour la reconnaissance : on y trouve souvent des
+  adresses e-mail, des noms d’employés, des éléments internes, et des informations
+  organisationnelles utiles.<br><br>
+
+  Ces données sont très utiles pour la collecte **passive**, car la collecte active nécessite
+  souvent une autorisation.  
+  Vous décidez donc de commencer par l’énumération des répertoires afin de découvrir les zones
+  cachées ou protégées du site web.<br><br>
+
+  Trouver les répertoires et fichiers manuellement est complexe, mais heureusement cette étape
+  peut être automatisée grâce à des outils comme <b>DirBuster</b>, qui testent rapidement des
+  milliers de chemins potentiels pour révéler des ressources non indexées.
+
+        <br><br>
+<b>Exemple d'utilisation d’OWASP DirBuster :</b><br><br>
+
+Lancez DirBuster pour démarrer le processus d’énumération.<br><br>
+
+<b>URL cible :</b> https://url.url<br><br>
+
+<b>Fichier contenant la liste des répertoires et fichiers :</b><br>
+<i>remplacer par le chemin du dictionnaire de mots</i><br><br>
+
+Laissez les autres paramètres par défaut.<br><br>
+
+Après l’énumération, consultez le nom du fichier ou répertoire caché  
+dans la vue <b>« Arborescence »</b> (onglet Résultats).
+
+  
+</div>
+
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc4')">
+        <span id="s2acc4-arrow" class="acc-arrow">▶</span>
+        4) Vulnerability Assessment
+      </div>
+      <div id="s2acc4" class="acc-body">
+
+  <b>Analyse de vulnérabilités avec OWASP ZAP</b><br><br>
+
+  Un autre excellent outil fourni par la fondation OWASP est <b>Zed Attack Proxy (ZAP)</b>.
+  Il permet d'effectuer une analyse de vulnérabilité automatisée sur une application web.<br><br>
+
+  ZAP explore l’application web, suit les liens qu’il trouve, puis envoie ces éléments au
+  <b>scanner actif</b>, qui réalise des tests d’intrusion automatisés (injections, traversée de répertoires,
+  failles d’authentification, configuration, etc.).<br><br>
+
+  Une fois l’analyse terminée, vous pouvez :<br>
+  – générer un rapport PDF ou HTML<br>
+  – consulter le détail des vulnérabilités dans l’onglet <b>Alerts</b><br><br>
+
+  <b>Remarque :</b> Lors du premier lancement de ZAP, l’application demande si la session doit être enregistrée.<br>
+  Sélectionnez : <i>« Non, je ne souhaite pas conserver cette session pour le moment »</i>.<br><br>
+
+  <b>Étapes :</b><br>
+  • Démarrer ZAP et dans la section <b>Quick Start</b>, cliquer sur <b>Automated Scan</b>.<br>
+  • Saisir l’URL cible (ex. : <code>https://angelsscooters.lab</code>).<br>
+  • Activer le <b>traditional spider</b>.<br>
+  • Lancer l’analyse avec <b>Attack</b>.<br><br>
+
+  <b>Illustrations :</b><br><br>
+
+ 
+  <img src="assets/zap1.png" style="max-width:100%; border:1px solid #444; border-radius:8px;">
+<img src="assets/zap2.png" style="max-width:100%; border:1px solid #444; border-radius:8px;">
+
+
+</div>
+
+    </div>
+
+  </div>
+
+  <!-- AUTRES SECTIONS VIDES -->
+  <div id="s3" class="content"><div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div></div>
+  <div id="s4" class="content"><div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div></div>
+  <div id="s5" class="content"><div class="section-title">V. Nmap: Basics – Intermediate</div></div>
+  <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div></div>
+  <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div></div>
+  <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
+  <div id="s9" class="content"><div class="section-title">IX. Macro Malware – Advanced</div></div>
+  <div id="s10" class="content"><div class="section-title">X. Tomcat & LSASS Dump – Advanced</div></div>
+  <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload – Advanced</div></div>
+  <div id="s12" class="content"><div class="section-title">XII. PHP Upload – Novice</div></div>
+  <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div></div>
+  <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
+  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
+  <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
+
+</div>
+
+</body>
+</html>
