@@ -251,7 +251,41 @@ PORT&nbsp;&nbsp;&nbsp;STATE&nbsp;SERVICE&nbsp;&nbsp;VERSION<br>
         <span id="s2acc3-arrow" class="acc-arrow">▶</span>
         3) Directory Enumeration
       </div>
-      <div id="s2acc3" class="acc-body"></div>
+      <div id="s2acc3" class="acc-body">
+
+  Après avoir cartographié l'infrastructure et obtenu l'accès au serveur FTP non sécurisé,
+  vous décidez d'analyser les informations fournies par l'application web.  
+  C'est généralement une mine d'or pour la reconnaissance : on y trouve souvent des
+  adresses e-mail, des noms d’employés, des éléments internes, et des informations
+  organisationnelles utiles.<br><br>
+
+  Ces données sont très utiles pour la collecte **passive**, car la collecte active nécessite
+  souvent une autorisation.  
+  Vous décidez donc de commencer par l’énumération des répertoires afin de découvrir les zones
+  cachées ou protégées du site web.<br><br>
+
+  Trouver les répertoires et fichiers manuellement est complexe, mais heureusement cette étape
+  peut être automatisée grâce à des outils comme <b>DirBuster</b>, qui testent rapidement des
+  milliers de chemins potentiels pour révéler des ressources non indexées.
+
+        <br><br>
+<b>Exemple d'utilisation d’OWASP DirBuster :</b><br><br>
+
+Lancez DirBuster pour démarrer le processus d’énumération.<br><br>
+
+<b>URL cible :</b> https://url.url<br><br>
+
+<b>Fichier contenant la liste des répertoires et fichiers :</b><br>
+<i>remplacer par le chemin du dictionnaire de mots</i><br><br>
+
+Laissez les autres paramètres par défaut.<br><br>
+
+Après l’énumération, consultez le nom du fichier ou répertoire caché  
+dans la vue <b>« Arborescence »</b> (onglet Résultats).
+
+  
+</div>
+
     </div>
 
     <div class="acc-item">
