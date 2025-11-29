@@ -466,10 +466,37 @@ Lancez l’exécutable :
           e) Comparing
         </div>
         <div id="s3acc2e" class="acc-body">
-          Compare deux snapshots pour détecter :  
-          <br>- modifications de permissions  
-          <br>- nouveaux comptes  
-          <br>- changements dans les groupes AD  
+          <p>
+    Exportez la comparaison vers un fichier CSV, par exemple : <code>C:\Snapshots\diff.csv</code>.
+</p>
+
+<img src="<?= $AD1 ?>" alt="AD1" />
+
+<p>
+    Recherchez les objets contenant les mots-clés <strong>Finance</strong> et <strong>missing</strong>.
+</p>
+
+<pre><code>cat .\diff.csv | findstr "Finance.*missing"
+</code></pre>
+
+<p>Exemple de résultat :</p>
+
+<pre><code>"CN=&lt;common-name-of-the-object&gt;,OU=Finance,OU=EU Domain Users,DC=commensurate,DC=tech","","Object missing in second","",""
+</code></pre>
+
+<p>
+    Le <code>sAMAccountName</code> peut être trouvé en ouvrant le fichier <code>previous-snapshot.dat</code> dans Active Directory Explorer et en naviguant jusqu'à l’objet.
+    Il suffit ensuite de repérer l’attribut <code>sAMAccountName</code> et d’en vérifier la valeur.
+</p>
+
+<img src="<?= $AD2 ?>" alt="AD2" />
+
+<p>
+    En parcourant les attributs, vous pouvez trouver le mot de passe supposé dans la valeur de l’attribut <code>description</code>.
+</p>
+
+<img src="<?= $AD3 ?>" alt="AD3" />
+
         </div>
       </div>
 
