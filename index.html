@@ -581,7 +581,26 @@ Click the <b>Save Changes</b> button.
           c) Landing Pages
         </div>
         <div id="s4acc1c" class="acc-body">
-          <!-- Ton contenu ici -->
+          Open the <b>Landing Pages</b> view from the sidebar.<br><br>
+
+• Delete any existing landing pages.<br><br>
+
+Click the <b>New Landing Page</b> button and configure:<br><br>
+
+<b>Page name :</b> Wordpress login<br><br>
+
+Click the <b>Import Site</b> button.<br><br>
+
+Enter the following URL:<br>
+<code>https://cheezburger.lab/wp-login.php</code><br>
+and click <b>Import</b>.<br><br>
+
+<b>Capture Submitted Data :</b> Yes<br>
+<b>Capture Passwords :</b> Yes<br>
+<b>Redirect to :</b> https://cheezburger.lab/<br><br>
+
+Click the <b>Save Page</b> button.
+
         </div>
       </div>
 
@@ -592,7 +611,35 @@ Click the <b>Save Changes</b> button.
           d) Email Templates
         </div>
         <div id="s4acc1d" class="acc-body">
-          <!-- Ton contenu ici -->
+          Open the <b>Email Templates</b> view from the sidebar.<br><br>
+
+• Delete any existing email templates.<br><br>
+
+Click the <b>New Template</b> button and configure:<br><br>
+
+<b>Template name :</b> Cheezburger<br>
+<b>Email Subject :</b> Urgent problem with our homepage<br><br>
+
+Open the <b>HTML</b> tab.<br><br>
+
+Copy and paste the following HTML source code:<br><br>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Hey {{.FirstName}}, One of our most important clients reported a problem with our WordPress page (&lt;a href="{{.URL}}"&gt;https://cheezburger.lab/&lt;/a&gt;). Could you please take a quick look and make sure all information is correct? Thanks, {{.From}}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<br>
+
+Leave the <b>Add Tracking Image</b> option enabled.<br><br>
+
+Click the <b>Save Template</b> button.
+
         </div>
       </div>
 
@@ -603,7 +650,22 @@ Click the <b>Save Changes</b> button.
           e) Launching the Campaign
         </div>
         <div id="s4acc1e" class="acc-body">
-          <!-- Ton contenu ici -->
+          Open the <b>Campaigns</b> view from the sidebar.<br><br>
+
+Click the <b>New Campaign</b> button to create a new phishing campaign:<br><br>
+
+<b>Campaign name :</b> Cheezburger<br>
+<b>Email template :</b> Cheezburger<br>
+<b>Landing page :</b> Wordpress login<br>
+<b>URL :</b> https://cheezeburger.lab/wp-login.php<br><br>
+
+Leave the <b>Launch Date</b> and <b>Send Emails By</b> settings unchanged.<br><br>
+
+<b>Sending profile :</b> Mike Rockston<br>
+<b>Groups :</b> Cheezburger<br><br>
+
+Click the <b>Launch Campaign</b> button and accept the confirmation.
+
         </div>
       </div>
 
