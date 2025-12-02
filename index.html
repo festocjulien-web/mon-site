@@ -393,10 +393,50 @@
         3) Port Scanning
       </div>
       <div id="s5acc3" class="acc-body">
-        SYN scan (default, fast and stealthy):<br>
-        <code>nmap -sS target</code><br><br>
-        All TCP ports:<br>
-        <code>nmap -p- target</code>
+        <p>
+  Par défaut, <b>Nmap</b> scanne uniquement les <b>1 000 ports TCP les plus courants</b> d'une cible.  
+  Il est donc fréquent d’utiliser l’option <code>-p</code> pour spécifier les ports à analyser :
+</p>
+
+<pre><code>nmap -p 80 scanme.nmap.org    # Scanner uniquement le port 80</code></pre>
+
+<pre><code>nmap -p- scanme.nmap.org      # Scanner les 65 535 ports</code></pre>
+
+<pre><code>nmap -p 1-100,445 scanme.nmap.org   # Scanner les ports 1 à 100 + le port 445</code></pre>
+
+<p>
+  Gardez en tête que ces commandes ne scannent que les ports TCP.  
+  Un scan réseau n’est jamais complet sans un <b>scan UDP</b>, activable via :
+</p>
+
+<pre><code>nmap -sU scanme.nmap.org</code></pre>
+
+<p>
+  Pour un scan encore plus rapide, Nmap propose le mode <b>Fast Scan</b>, qui ne scanne que les 100 ports les plus courants :
+</p>
+
+<pre><code>nmap -F scanme.nmap.org</code></pre>
+
+<h3>🧠 États possibles d’un port selon Nmap</h3>
+<ul>
+  <li><b>open :</b> une application écoute sur ce port et accepte les connexions.</li>
+  <li><b>closed :</b> le port est accessible mais aucun service n’écoute dessus.</li>
+  <li><b>filtered :</b> Nmap ne peut pas déterminer l’état du port car les paquets sont bloqués (souvent par un firewall).</li>
+  <li><b>unfiltered :</b> Nmap a atteint le port, mais ne peut pas dire s’il est ouvert ou fermé.</li>
+  <li><b>open|filtered :</b> Nmap ne peut pas déterminer si le port est ouvert ou filtré.</li>
+  <li><b>closed|filtered :</b> cas rare (scan IP ID), Nmap ne peut pas déterminer si le port est fermé ou filtré.</li>
+</ul>
+
+<h3>🧪 Exercice</h3>
+<p>
+  Lancez un <b>scan TCP + UDP</b> sur le réseau local afin d’identifier les ports ouverts et les services associés.  
+  Les scans UDP étant souvent lents, vous pouvez accélérer l’analyse en ciblant uniquement un ensemble de ports précis.
+</p>
+
+<div class="info-box">
+  <b>Note :</b> Vous pouvez utiliser l’option <code>--open</code> pour n’afficher que les ports ouverts dans les résultats.
+</div>
+
       </div>
     </div>
 
