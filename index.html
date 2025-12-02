@@ -3,215 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <title>PECB Hacker – Aide Mémoire</title>
-
-  <!-- CSS externe -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- JS externe -->
   <script src="script.js" defer></script>
 </head>
-
 <body>
-
 <div class="container">
+<h1>PECB Certified Hacker – Aide mémoire</h1>
 
-  <h1>PECB Certified Hacker – Aide mémoire</h1>
+<!-- Carousel -->
+<div class="carousel-wrapper">
+  <div id="carousel" class="carousel">
+    <div class="title-group">
+      <div class="tab active" data-target="s1">I. OSINT</div>
+      <div class="tab" data-target="s2">II. Active Info</div>
+      <div class="tab" data-target="s3">III. AD Recon</div>
+      <div class="tab" data-target="s4">IV. Phishing</div>
+    </div>
+    <div class="title-group">
+      <div class="tab" data-target="s5">V. Nmap</div>
+      <div class="tab" data-target="s6">VI. Greenbone</div>
+      <div class="tab" data-target="s7">VII. Password Spray</div>
+      <div class="tab" data-target="s8">VIII. WPScan</div>
+    </div>
+    <div class="title-group">
+      <div class="tab" data-target="s9">IX. Macro Malware</div>
+      <div class="tab" data-target="s10">X. Tomcat LSASS</div>
+      <div class="tab" data-target="s11">XI. NodeJS Upload</div>
+      <div class="tab" data-target="s12">XII. PHP Upload</div>
+    </div>
+    <div class="title-group">
+      <div class="tab" data-target="s13">XIII. SUID</div>
+      <div class="tab" data-target="s14">XIV. Metasploit</div>
+      <div class="tab" data-target="s15">XV. Reverse Shells</div>
+      <div class="tab" data-target="s16">XVI. Exfiltration</div>
+    </div>
+  </div>
+  <div id="leftArrow" class="arrow">❮</div>
+  <div id="rightArrow" class="arrow">❯</div>
+</div>
 
-  <!-- ==== CARROUSEL TITRES ==== -->
-  <div class="carousel-wrapper">
-    <div id="carousel" class="carousel">
+<!-- SECTION I -->
+<div id="s1" class="content active">
+  <div class="section-title">I. Introduction to OSINT</div>
+  <!-- sample content -->
+</div>
 
-      <!-- Groupe 1 -->
-      <div class="title-group">
-        <div class="tab active" data-target="s1">I. OSINT</div>
-        <div class="tab" data-target="s2">II. Active Info</div>
-        <div class="tab" data-target="s3">III. AD Recon</div>
-        <div class="tab" data-target="s4">IV. Phishing</div>
+<!-- SECTION II -->
+<div id="s2" class="content">
+  <div class="section-title">II. Active Information Gathering – Advanced</div>
+</div>
+
+<!-- SECTION III -->
+<div id="s3" class="content">
+  <div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div>
+</div>
+
+<!-- SECTION IV -->
+<div id="s4" class="content">
+  <div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div>
+
+  <!-- 1) Creating a Phishing Campaign -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s4acc1')">
+      <span id="s4acc1-arrow" class="acc-arrow">▶</span>1) Creating a Phishing Campaign
+    </div>
+    <div id="s4acc1" class="acc-body">
+
+      <!-- a) Sending Profiles -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc1a')">
+          <span id="s4acc1a-arrow" class="acc-arrow">▶</span>a) Sending Profiles
+        </div>
+        <div id="s4acc1a" class="acc-body">
+          Log into the Gophish Dashboard at: <code>https://attacker.lab:3333/</code><br>
+          Username: admin<br>Password: rangeforce<br><br>
+          Open Sending Profiles → New Profile:<br>
+          Profile: Mike Rockston<br>From: mike.rockston@cheezburger.lab<br>
+          Host: mail.cheezburger.lab:25<br>Username: mike.rockston<br>Password: CutePuppy9<br>
+          Ignore Cert Errors: Yes
+        </div>
       </div>
 
-      <!-- Groupe 2 -->
-      <div class="title-group">
-        <div class="tab" data-target="s5">V. Nmap</div>
-        <div class="tab" data-target="s6">VI. Greenbone</div>
-        <div class="tab" data-target="s7">VII. Password Spray</div>
-        <div class="tab" data-target="s8">VIII. WPScan</div>
+      <!-- b) Users and Groups -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc1b')">
+          <span id="s4acc1b-arrow" class="acc-arrow">▶</span>b) Users and Groups
+        </div>
+        <div id="s4acc1b" class="acc-body">
+          Open Users & Groups → New Group: Cheezburger → Bulk Import:<br>
+          File: /root/Desktop/emails.csv
+        </div>
       </div>
 
-      <!-- Groupe 3 -->
-      <div class="title-group">
-        <div class="tab" data-target="s9">IX. Macro Malware</div>
-        <div class="tab" data-target="s10">X. Tomcat LSASS</div>
-        <div class="tab" data-target="s11">XI. NodeJS Upload</div>
-        <div class="tab" data-target="s12">XII. PHP Upload</div>
+      <!-- c) Landing Pages -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc1c')">
+          <span id="s4acc1c-arrow" class="acc-arrow">▶</span>c) Landing Pages
+        </div>
+        <div id="s4acc1c" class="acc-body">
+          New Landing Page → Name: Wordpress login → Import:<br>
+          URL: https://cheezburger.lab/wp-login.php<br>
+          Capture Data: Yes<br>Capture Passwords: Yes<br>
+          Redirect: https://cheezburger.lab/
+        </div>
       </div>
 
-      <!-- Groupe 4 -->
-      <div class="title-group">
-        <div class="tab" data-target="s13">XIII. SUID</div>
-        <div class="tab" data-target="s14">XIV. Metasploit</div>
-        <div class="tab" data-target="s15">XV. Reverse Shells</div>
-        <div class="tab" data-target="s16">XVI. Exfiltration</div>
+      <!-- d) Email Templates -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc1d')">
+          <span id="s4acc1d-arrow" class="acc-arrow">▶</span>d) Email Templates
+        </div>
+        <div id="s4acc1d" class="acc-body">
+          Template: Cheezburger<br>Subject: Urgent problem with our homepage<br>
+          HTML Source:<br>
+          &lt;html&gt;... (email HTML here) ...&lt;/html&gt;
+        </div>
+      </div>
+
+      <!-- e) Launching the Campaign -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc1e')">
+          <span id="s4acc1e-arrow" class="acc-arrow">▶</span>e) Launching the Campaign
+        </div>
+        <div id="s4acc1e" class="acc-body">
+          New Campaign → Name: Cheezburger<br>
+          Template: Cheezburger<br>
+          Landing Page: Wordpress login<br>
+          URL: https://cheezeburger.lab/wp-login.php<br>
+          Sending Profile: Mike Rockston<br>
+          Group: Cheezburger
+        </div>
       </div>
 
     </div>
-
-    <div id="leftArrow" class="arrow">❮</div>
-    <div id="rightArrow" class="arrow">❯</div>
   </div>
 
-  <!-- ==== CONTENU DES SECTIONS ==== -->
-
-  <!-- SECTION I -->
-  <div id="s1" class="content active">
-
-    <div class="section-title">I. Introduction to OSINT</div>
-
-    <!-- 1) Search Engines -->
-    <div class="acc-item">
-      <div class="acc-header" onclick="toggleAcc('acc1')">
-        <span id="acc1-arrow" class="acc-arrow">▶</span>
-        1) Search Engines
-      </div>
-      <div id="acc1" class="acc-body">
-        Par exemple, sur Google, si vous souhaitez rechercher le contenu d'un site web spécifique,
-        vous pouvez utiliser le mot-clé <b>site:</b>.<br><br>
-        Ainsi, pour obtenir uniquement les résultats provenant de pastebin.com :
-        <b>site:pastebin.com</b><br><br>
-        Consultez aussi :  
-        <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">
-          La Google Hacking Database
-        </a>.
-      </div>
+  <!-- 2) Analyzing the Results -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s4acc2')">
+      <span id="s4acc2-arrow" class="acc-arrow">▶</span>2) Analyzing the Results
     </div>
+    <div id="s4acc2" class="acc-body">
 
-    <!-- 2) Phishing Email -->
-    <div class="acc-item">
-      <div class="acc-header" onclick="toggleAcc('acc2')">
-        <span id="acc2-arrow" class="acc-arrow">▶</span>
-        2) Phishing Email
+      <!-- a) Dashboard Statistics -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc2a')">
+          <span id="s4acc2a-arrow" class="acc-arrow">▶</span>a) Dashboard Statistics
+        </div>
+        <div id="s4acc2a" class="acc-body">
+          Refresh → Check:<br>Email Opened / Clicked Link / Submitted Data
+        </div>
       </div>
-      <div id="acc2" class="acc-body">
-        Utiliser la recherche Google.
+
+      <!-- b) Phished Information -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s4acc2b')">
+          <span id="s4acc2b-arrow" class="acc-arrow">▶</span>b) Phished Information
+        </div>
+        <div id="s4acc2b" class="acc-body">
+          Lana Ross → OS from timeline<br>
+          Jeremy Emerson → Password in submitted data
+        </div>
       </div>
+
     </div>
-
-    <!-- 3) Creative Approach -->
-    <div class="acc-item">
-      <div class="acc-header" onclick="toggleAcc('acc3')">
-        <span id="acc3-arrow" class="acc-arrow">▶</span>
-        3) Creative Approach
-      </div>
-      <div id="acc3" class="acc-body">
-        Vous pouvez essayer :<br>
-        – D’utiliser l’adresse email trouvée pour interroger des bases<br>
-        – De chercher si l’utilisateur existe sur d’autres plateformes
-      </div>
-    </div>
-
-    <!-- 4) Find Further Information -->
-    <div class="acc-item">
-      <div class="acc-header" onclick="toggleAcc('acc4')">
-        <span id="acc4-arrow" class="acc-arrow">▶</span>
-        4) Find Further Information
-      </div>
-      <div id="acc4" class="acc-body">
-        Par exemple :  
-        <a href="https://usersearch.org" target="_blank">usersearch.org</a>
-      </div>
-    </div>
-
-  </div> <!-- FIN SECTION I -->
-
-
-  <!-- SECTION II -->
-  <div id="s2" class="content">
-    <div class="section-title">II. Active Information Gathering – Advanced</div>
-    <!-- contenu existant inchangé -->
   </div>
 
-  <!-- SECTION III -->
-  <div id="s3" class="content">
-    <div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div>
-    <!-- contenu existant inchangé -->
+</div> <!-- END SECTION IV -->
+
+<!-- SECTION V -->
+<div id="s5" class="content">
+  <div class="section-title">V. Nmap: Basics – Intermediate</div>
+
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s5acc1')"><span id="s5acc1-arrow" class="acc-arrow">▶</span>1) Introduction</div>
+    <div id="s5acc1" class="acc-body"></div>
   </div>
 
-  <!-- SECTION IV -->
-  <div id="s4" class="content">
-    <div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div>
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s5acc2')"><span id="s5acc2-arrow" class="acc-arrow">▶</span>2) Host Discovery</div>
+    <div id="s5acc2" class="acc-body"></div>
+  </div>
 
-    <!-- 1) Creating a Phishing Campaign -->
-    <div class="acc-item">
-      <div class="acc-header" onclick="toggleAcc('s4acc1')">
-        <span id="s4acc1-arrow" class="acc-arrow">▶</span>
-        1) Creating a Phishing Campaign
-      </div>
-      <div id="s4acc1" class="acc-body">
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s5acc3')"><span id="s5acc3-arrow" class="acc-arrow">▶</span>3) Port Scanning</div>
+    <div id="s5acc3" class="acc-body"></div>
+  </div>
 
-        <!-- 1a) Sending Profiles -->
-        <div class="acc-item">
-          <div class="acc-header" onclick="toggleAcc('s4acc1a')">
-            <span id="s4acc1a-arrow" class="acc-arrow">▶</span>
-            a) Sending Profiles
-          </div>
-          <div id="s4acc1a" class="acc-body">
-            Log into the Gophish Dashboard… (ton contenu intact)
-          </div>
-        </div>
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s5acc4')"><span id="s5acc4-arrow" class="acc-arrow">▶</span>4) Service and Version Detection</div>
+    <div id="s5acc4" class="acc-body"></div>
+  </div>
 
-        <!-- 1b) Users and Groups -->
-        <div class="acc-item">
-          <div class="acc-header" onclick="toggleAcc('s4acc1b')">
-            <span id="s4acc1b-arrow" class="acc-arrow">▶</span>
-            b) Users and Groups
-          </div>
-          <div id="s4acc1b" class="acc-body">
-            <!-- ton contenu intact -->
-          </div>
-        </div>
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s5acc5')"><span id="s5acc5-arrow" class="acc-arrow">▶</span>5) NSE Scripts</div>
+    <div id="s5acc5" class="acc-body"></div>
+  </div>
 
-        <!-- 1c) Landing Pages -->
-        <div class="acc-item">
-          <div class="acc-header" onclick="toggleAcc('s4acc1c')">
-            <span id="s4acc1c-arrow" class="acc-arrow">▶</span>
-            c) Landing Pages
-          </div>
-          <div id="s4acc1c" class="acc-body">
-            <!-- ton contenu intact -->
-          </div>
-        </div>
+</div>
 
-        <!-- 1d) Email Templates -->
-        <div class="acc-item">
-          <div class="acc-header" onclick="toggleAcc('s4acc1d')">
-            <span id="s4acc1d-arrow" class="acc-arrow">▶</span>
-            d) Email Templates
-          </div>
-          <div id="s4acc1d" class="acc-body">
-            <!-- ton contenu intact -->
-          </div>
-        </div>
-
-        <!-- 1e) Launching the Campaign -->
-        <div class="acc-item">
-          <div class="acc-header" onclick="toggleAcc('s4acc1e')">
-            <span id="s4acc1e-arrow" class="acc-arrow">▶</span>
-            e) Launching the Campaign
-          </div>
-          <div id="s4acc1e" class="acc-body">
-            <!-- ton contenu intact -->
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 2) Analyzing the Results -->
-    <div class="acc-item">
-      <div class="acc-header" onclick="toggleAcc('s4acc2')">
-        <span id="s4acc2-arrow" class="acc-arrow">▶</span>
-        2) Analyzing the Results
-      </div>
-      <div id="s4acc2" class="acc-body">
-
-        <!-- 2a) Dashboard Statistics -->
-        <div class="a
