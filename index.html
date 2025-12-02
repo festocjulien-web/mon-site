@@ -3,135 +3,669 @@
 <head>
   <meta charset="UTF-8">
   <title>PECB Hacker – Aide Mémoire</title>
+
+  <!-- CSS externe -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- JS externe -->
   <script src="script.js" defer></script>
 </head>
+
 <body>
+
 <div class="container">
-<h1>PECB Certified Hacker – Aide mémoire</h1>
 
-<!-- Carousel -->
-<div class="carousel-wrapper">
-  <div id="carousel" class="carousel">
-    <div class="title-group">
-      <div class="tab active" data-target="s1">I. OSINT</div>
-      <div class="tab" data-target="s2">II. Active Info</div>
-      <div class="tab" data-target="s3">III. AD Recon</div>
-      <div class="tab" data-target="s4">IV. Phishing</div>
+  <h1>PECB Certified Hacker – Aide mémoire</h1>
+
+  <!-- ==== CARROUSEL TITRES ==== -->
+  <div class="carousel-wrapper">
+    <div id="carousel" class="carousel">
+
+      <!-- Groupe 1 -->
+      <div class="title-group">
+        <div class="tab active" data-target="s1">I. OSINT</div>
+        <div class="tab" data-target="s2">II. Active Info</div>
+        <div class="tab" data-target="s3">III. AD Recon</div>
+        <div class="tab" data-target="s4">IV. Phishing</div>
+      </div>
+
+      <!-- Groupe 2 -->
+      <div class="title-group">
+        <div class="tab" data-target="s5">V. Nmap</div>
+        <div class="tab" data-target="s6">VI. Greenbone</div>
+        <div class="tab" data-target="s7">VII. Password Spray</div>
+        <div class="tab" data-target="s8">VIII. WPScan</div>
+      </div>
+
+      <!-- Groupe 3 -->
+      <div class="title-group">
+        <div class="tab" data-target="s9">IX. Macro Malware</div>
+        <div class="tab" data-target="s10">X. Tomcat LSASS</div>
+        <div class="tab" data-target="s11">XI. NodeJS Upload</div>
+        <div class="tab" data-target="s12">XII. PHP Upload</div>
+      </div>
+
+      <!-- Groupe 4 -->
+      <div class="title-group">
+        <div class="tab" data-target="s13">XIII. SUID</div>
+        <div class="tab" data-target="s14">XIV. Metasploit</div>
+        <div class="tab" data-target="s15">XV. Reverse Shells</div>
+        <div class="tab" data-target="s16">XVI. Exfiltration</div>
+      </div>
+
     </div>
-    <div class="title-group">
-      <div class="tab" data-target="s5">V. Nmap</div>
-      <div class="tab" data-target="s6">VI. Greenbone</div>
-      <div class="tab" data-target="s7">VII. Password Spray</div>
-      <div class="tab" data-target="s8">VIII. WPScan</div>
-    </div>
-    <div class="title-group">
-      <div class="tab" data-target="s9">IX. Macro Malware</div>
-      <div class="tab" data-target="s10">X. Tomcat LSASS</div>
-      <div class="tab" data-target="s11">XI. NodeJS Upload</div>
-      <div class="tab" data-target="s12">XII. PHP Upload</div>
-    </div>
-    <div class="title-group">
-      <div class="tab" data-target="s13">XIII. SUID</div>
-      <div class="tab" data-target="s14">XIV. Metasploit</div>
-      <div class="tab" data-target="s15">XV. Reverse Shells</div>
-      <div class="tab" data-target="s16">XVI. Exfiltration</div>
-    </div>
+
+    <div id="leftArrow" class="arrow">❮</div>
+    <div id="rightArrow" class="arrow">❯</div>
   </div>
-  <div id="leftArrow" class="arrow">❮</div>
-  <div id="rightArrow" class="arrow">❯</div>
+
+  <!-- ==== CONTENU DES SECTIONS ==== -->
+
+  <!-- SECTION I -->
+  <div id="s1" class="content active">
+
+    <div class="section-title">I. Introduction to OSINT</div>
+
+    <!-- 1) Search Engines -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc1')">
+        <span id="acc1-arrow" class="acc-arrow">▶</span>
+        1) Search Engines
+      </div>
+      <div id="acc1" class="acc-body">
+        Par exemple, sur Google, si vous souhaitez rechercher le contenu d'un site web spécifique,
+        vous pouvez utiliser le mot-clé <b>site:</b>.<br><br>
+
+        Ainsi, pour obtenir uniquement les résultats provenant de pastebin.com :
+        <b>site:pastebin.com</b><br><br>
+
+        Vous pouvez aussi préciser la recherche dans Google via les filtres avancés.<br><br>
+
+        Consultez aussi :  
+        <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">
+          La Google Hacking Database
+        </a>.
+      </div>
+    </div>
+
+    <!-- 2) Phishing Email -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc2')">
+        <span id="acc2-arrow" class="acc-arrow">▶</span>
+        2) Phishing Email
+      </div>
+      <div id="acc2" class="acc-body">
+        Utiliser la recherche Google.
+      </div>
+    </div>
+
+    <!-- 3) Creative Approach -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc3')">
+        <span id="acc3-arrow" class="acc-arrow">▶</span>
+        3) Creative Approach
+      </div>
+      <div id="acc3" class="acc-body">
+        Vous pouvez essayer :
+        <br>- D’utiliser l’adresse email trouvée pour interroger des bases de données  
+        <br>- De deviner d’autres usernames  
+        <br>- De chercher si l’utilisateur existe sur d’autres plateformes
+      </div>
+    </div>
+
+    <!-- 4) Find Further Information -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc4')">
+        <span id="acc4-arrow" class="acc-arrow">▶</span>
+        4) Find Further Information
+      </div>
+      <div id="acc4" class="acc-body">
+        Les outils personnalisés sont souvent plus efficaces que Google.<br><br>
+
+        Par exemple :  
+        <a href="https://usersearch.org" target="_blank">usersearch.org</a><br><br>
+
+        Sites spécialisés :  
+        <a href="https://pipl.com" target="_blank">pipl.com</a> —  
+        <a href="https://spokeo.com" target="_blank">spokeo.com</a><br><br>
+
+        Framework OSINT complet :  
+        <a href="https://osintframework.com" target="_blank">osintframework.com</a>
+      </div>
+    </div>
+
+    <!-- 5) Explore the Website -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('acc5')">
+        <span id="acc5-arrow" class="acc-arrow">▶</span>
+        5) Explore the Website
+      </div>
+
+      <div id="acc5" class="acc-body">
+
+        <!-- 5a -->
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc('acc5a')">
+            <span id="acc5a-arrow" class="acc-arrow">▶</span>
+            a) Contents of the Website
+          </div>
+          <div id="acc5a" class="acc-body">
+            Pensez à inspecter le code source,  
+            les pages cachées, les PDFs,  
+            et utilisez des services comme :
+            <a href="https://urlscan.io" target="_blank">urlscan.io</a>
+          </div>
+        </div>
+
+        <!-- 5b -->
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc('acc5b')">
+            <span id="acc5b-arrow" class="acc-arrow">▶</span>
+            b) Interesting Files
+          </div>
+          <div id="acc5b" class="acc-body">
+            Les métadonnées EXIF peuvent révéler :
+            <br>- GPS  
+            <br>- Appareil utilisé  
+            <br>- Logiciels utilisés<br><br>
+
+            Exemple :  
+            <code>exiftool -gpsposition# image.jpg</code>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div> <!-- FIN SECTION I -->
+
+
+  <!-- SECTION II -->
+  <div id="s2" class="content">
+    <div class="section-title">II. Active Information Gathering – Advanced</div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc1')">
+        <span id="s2acc1-arrow" class="acc-arrow">▶</span>
+        1) Port Scanning
+      </div>
+      <div id="s2acc1" class="acc-body">
+  Exemple de scan avancé avec Nmap :<br><br>
+
+  <code>nmap -A scanme.nmap.org</code><br><br>
+
+  L’option <b>-A</b> active :<br>
+  • la détection d’OS<br>
+  • la détection de versions<br>
+  • le traceroute<br>
+  • les scripts NSE de base<br><br>
+
+  C’est l’une des commandes les plus utiles pour une reconnaissance rapide et complète.
+        PS: -A pour aggressif
 </div>
 
-<!-- SECTION I -->
-<div id="s1" class="content active">
-  <div class="section-title">I. Introduction to OSINT</div>
-  <!-- sample content -->
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc2')">
+        <span id="s2acc2-arrow" class="acc-arrow">▶</span>
+        2) Misconfigured Services
+      </div>
+      <div id="s2acc2" class="acc-body">
+
+  <!-- OWASP résumé -->
+  <b>OWASP Top 10 (Résumé)</b><br><br>
+
+  L’OWASP (<a href="https://owasp.org/www-project-top-ten/" target="_blank">Open Web Application Security Project</a>)
+  est une organisation de référence en cybersécurité, connue pour publier le
+  « Top 10 », un classement des risques de sécurité les plus importants dans les
+  applications web.  
+  Il sert de base aux audits, aux tests d’intrusion et aux bonnes pratiques de configuration.
+
+  <br><br>
+
+  <!-- SHODAN résumé -->
+  <b>Shodan (Résumé)</b><br><br>
+
+  <a href="https://www.shodan.io" target="_blank">Shodan</a> est un moteur de recherche spécialisé
+  permettant de trouver des services et équipements exposés sur Internet.  
+  Il identifie les ports ouverts, les services actifs et les appareils mal configurés.
+
+  <br><br>
+
+  <!-- Exemple réseau demandé -->
+  <b>Exemple Nmap (utile pour les services mal configurés)</b><br><br>
+
+  <code>
+PORT&nbsp;&nbsp;&nbsp;STATE&nbsp;SERVICE&nbsp;&nbsp;VERSION<br>
+21/tcp&nbsp;open&nbsp;&nbsp;ftp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vsftpd 3.0.3<br>
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+  </code>
+
 </div>
 
-<!-- SECTION II -->
-<div id="s2" class="content">
-  <div class="section-title">II. Active Information Gathering – Advanced</div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc3')">
+        <span id="s2acc3-arrow" class="acc-arrow">▶</span>
+        3) Directory Enumeration
+      </div>
+      <div id="s2acc3" class="acc-body">
+
+  Après avoir cartographié l'infrastructure et obtenu l'accès au serveur FTP non sécurisé,
+  vous décidez d'analyser les informations fournies par l'application web.  
+  C'est généralement une mine d'or pour la reconnaissance : on y trouve souvent des
+  adresses e-mail, des noms d’employés, des éléments internes, et des informations
+  organisationnelles utiles.<br><br>
+
+  Ces données sont très utiles pour la collecte **passive**, car la collecte active nécessite
+  souvent une autorisation.  
+  Vous décidez donc de commencer par l’énumération des répertoires afin de découvrir les zones
+  cachées ou protégées du site web.<br><br>
+
+  Trouver les répertoires et fichiers manuellement est complexe, mais heureusement cette étape
+  peut être automatisée grâce à des outils comme <b>DirBuster</b>, qui testent rapidement des
+  milliers de chemins potentiels pour révéler des ressources non indexées.
+
+        <br><br>
+<b>Exemple d'utilisation d’OWASP DirBuster :</b><br><br>
+
+Lancez DirBuster pour démarrer le processus d’énumération.<br><br>
+
+<b>URL cible :</b> https://url.url<br><br>
+
+<b>Fichier contenant la liste des répertoires et fichiers :</b><br>
+<i>remplacer par le chemin du dictionnaire de mots</i><br><br>
+
+Laissez les autres paramètres par défaut.<br><br>
+
+Après l’énumération, consultez le nom du fichier ou répertoire caché  
+dans la vue <b>« Arborescence »</b> (onglet Résultats).
+
+  
 </div>
 
-<!-- SECTION III -->
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc('s2acc4')">
+        <span id="s2acc4-arrow" class="acc-arrow">▶</span>
+        4) Vulnerability Assessment
+      </div>
+      <div id="s2acc4" class="acc-body">
+
+  <b>Analyse de vulnérabilités avec OWASP ZAP</b><br><br>
+
+  Un autre excellent outil fourni par la fondation OWASP est <b>Zed Attack Proxy (ZAP)</b>.
+  Il permet d'effectuer une analyse de vulnérabilité automatisée sur une application web.<br><br>
+
+  ZAP explore l’application web, suit les liens qu’il trouve, puis envoie ces éléments au
+  <b>scanner actif</b>, qui réalise des tests d’intrusion automatisés (injections, traversée de répertoires,
+  failles d’authentification, configuration, etc.).<br><br>
+
+  Une fois l’analyse terminée, vous pouvez :<br>
+  – générer un rapport PDF ou HTML<br>
+  – consulter le détail des vulnérabilités dans l’onglet <b>Alerts</b><br><br>
+
+  <b>Remarque :</b> Lors du premier lancement de ZAP, l’application demande si la session doit être enregistrée.<br>
+  Sélectionnez : <i>« Non, je ne souhaite pas conserver cette session pour le moment »</i>.<br><br>
+
+  <b>Étapes :</b><br>
+  • Démarrer ZAP et dans la section <b>Quick Start</b>, cliquer sur <b>Automated Scan</b>.<br>
+  • Saisir l’URL cible (ex. : <code>https://angelsscooters.lab</code>).<br>
+  • Activer le <b>traditional spider</b>.<br>
+  • Lancer l’analyse avec <b>Attack</b>.<br><br>
+
+  <b>Illustrations :</b><br><br>
+
+ 
+  <img src="assets/zap1.png" style="max-width:100%; border:1px solid #444; border-radius:8px;">
+<img src="assets/zap2.png" style="max-width:100%; border:1px solid #444; border-radius:8px;">
+
+
+</div>
+
+    </div>
+
+  </div>
+
+  <!-- AUTRES SECTIONS VIDES -->
+  <!-- ===================== SECTION III ===================== -->
 <div id="s3" class="content">
   <div class="section-title">III. Windows Active Directory Reconnaissance – Advanced</div>
-</div>
 
-<!-- SECTION IV -->
+  <!-- 1) Getting Your Bearings -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s3acc1')">
+      <span id="s3acc1-arrow" class="acc-arrow">▶</span>
+      1) Getting Your Bearings
+    </div>
+    <div id="s3acc1" class="acc-body">
+
+      <b>Command Prompt</b><br><br>
+
+      Le <b>Command Prompt (cmd.exe)</b> reste encore très utile pour l’énumération AD.<br><br>
+
+      Référencer une variable d’environnement :
+
+      <pre><code>echo %USERNAME%</code></pre>
+
+      Afficher toutes les variables :
+
+      <pre><code>set</code></pre>
+
+      Voir celles commençant par USER :
+
+      <pre><code>set USER</code></pre>
+
+      <br>
+
+      <b>PowerShell</b><br><br>
+
+      Référencer une variable PS :
+
+      <pre><code>echo $Env:PSModulePath</code></pre>
+
+      Lister toutes les variables d’environnement :
+
+      <pre><code>dir Env:</code></pre>
+
+      Utiliser .NET dans PowerShell :
+
+      <pre><code>[System.Net.Dns]::GetHostName()</code></pre>
+
+      <br>
+
+      <b>Commandes communes utiles :</b>
+
+      <pre><code>hostname
+whoami
+systeminfo
+wmic computersystem get domain</code></pre>
+
+    </div>
+  </div>
+
+
+  <!-- 2) Active Directory Explorer -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s3acc2')">
+      <span id="s3acc2-arrow" class="acc-arrow">▶</span>
+      2) Active Directory Explorer
+    </div>
+
+    <div id="s3acc2" class="acc-body">
+
+      <!-- 2a) Loading -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2a')">
+          <span id="s3acc2a-arrow" class="acc-arrow">▶</span>
+          a) Loading
+        </div>
+        <div id="s3acc2a" class="acc-body">
+          <br><br>
+<b>Solution avec PowerShell</b><br><br>
+
+Naviguez dans le dossier <code>C:\Tools</code> :
+
+<pre><code>cd C:\Tools\</code></pre>
+
+Extrayez les fichiers :
+
+<pre><code>Expand-Archive -Path .\AdExplorer.zip -DestinationPath .\AdExplorer</code></pre>
+
+Lancez l’exécutable :
+
+<pre><code>.\AdExplorer\ADExplorer64.exe</code></pre>
+
+        </div>
+      </div>
+
+      <!-- 2b) Connecting -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2b')">
+          <span id="s3acc2b-arrow" class="acc-arrow">▶</span>
+          b) Connecting to Domain
+        </div>
+        <div id="s3acc2b" class="acc-body">
+          Connectez-vous au domaine Active Directory avec des identifiants valides ou un compte compromis.
+        </div>
+      </div>
+
+      <!-- 2c) Features -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2c')">
+          <span id="s3acc2c-arrow" class="acc-arrow">▶</span>
+          c) Features
+        </div>
+        <div id="s3acc2c" class="acc-body">
+          AD Explorer permet d’inspecter :
+          <br>- Users & groups  
+          <br>- ACLs  
+          <br>- Permissions  
+          <br>- Computers et OU  
+        </div>
+      </div>
+
+      <!-- 2d) Snapshots -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2d')">
+          <span id="s3acc2d-arrow" class="acc-arrow">▶</span>
+          d) Snapshots
+        </div>
+        <div id="s3acc2d" class="acc-body">
+          .\ADExplorer64.exe -snapshot COMMENSURATE C:\Snapshots\new-snapshot.dat  
+        </div>
+      </div>
+
+      <!-- 2e) Comparing -->
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc('s3acc2e')">
+          <span id="s3acc2e-arrow" class="acc-arrow">▶</span>
+          e) Comparing
+        </div>
+        <div id="s3acc2e" class="acc-body">
+          <p>
+    Exportez la comparaison vers un fichier CSV, par exemple : <code>C:\Snapshots\diff.csv</code>.
+</p>
+
+<img src="assets/AD1.png" alt="AD1">
+
+<p>
+    Recherchez les objets contenant les mots-clés <strong>Finance</strong> et <strong>missing</strong>.
+</p>
+
+<pre><code>cat .\diff.csv | findstr "Finance.*missing"
+</code></pre>
+
+<p>Exemple de résultat :</p>
+
+<pre><code>"CN=&lt;common-name-of-the-object&gt;,OU=Finance,OU=EU Domain Users,DC=commensurate,DC=tech","","Object missing in second","",""
+</code></pre>
+
+<p>
+    Le <code>sAMAccountName</code> peut être trouvé en ouvrant le fichier <code>previous-snapshot.dat</code> dans Active Directory Explorer et en naviguant jusqu'à l’objet.
+    Il suffit ensuite de repérer l’attribut <code>sAMAccountName</code> et d’en vérifier la valeur.
+</p>
+
+<img src="assets/AD2.png" alt="AD2">
+
+<p>
+    En parcourant les attributs, vous pouvez trouver le mot de passe supposé dans la valeur de l’attribut <code>description</code>.
+</p>
+
+<img src="assets/AD3.png" alt="AD3">
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- ===================== FIN SECTION III ===================== -->
+
 <div id="s4" class="content">
   <div class="section-title">IV. Setting up a Phishing Campaign – Advanced</div>
 
   <!-- 1) Creating a Phishing Campaign -->
   <div class="acc-item">
     <div class="acc-header" onclick="toggleAcc('s4acc1')">
-      <span id="s4acc1-arrow" class="acc-arrow">▶</span>1) Creating a Phishing Campaign
+      <span id="s4acc1-arrow" class="acc-arrow">▶</span>
+      1) Creating a Phishing Campaign
     </div>
     <div id="s4acc1" class="acc-body">
 
-      <!-- a) Sending Profiles -->
+      <!-- 1a) Sending Profiles -->
       <div class="acc-item">
         <div class="acc-header" onclick="toggleAcc('s4acc1a')">
-          <span id="s4acc1a-arrow" class="acc-arrow">▶</span>a) Sending Profiles
+          <span id="s4acc1a-arrow" class="acc-arrow">▶</span>
+          a) Sending Profiles
         </div>
         <div id="s4acc1a" class="acc-body">
-          Log into the Gophish Dashboard at: <code>https://attacker.lab:3333/</code><br>
-          Username: admin<br>Password: rangeforce<br><br>
-          Open Sending Profiles → New Profile:<br>
-          Profile: Mike Rockston<br>From: mike.rockston@cheezburger.lab<br>
-          Host: mail.cheezburger.lab:25<br>Username: mike.rockston<br>Password: CutePuppy9<br>
-          Ignore Cert Errors: Yes
+           Log into the Gophish Dashboard at:<br>
+    <code>https://attacker.lab:3333/</code><br><br>
+
+    <b>Username :</b> admin<br>
+    <b>Password :</b> rangeforce<br><br>
+
+    Open the <b>Sending Profiles</b> view from the sidebar.<br><br>
+
+    • Delete any existing sending profiles.<br><br>
+
+    Click <b>New Profile</b> and configure:<br><br>
+
+    <b>Profile name :</b> Mike Rockston<br>
+    <b>From :</b> Mike Rockston &lt;mike.rockston@cheezburger.lab&gt;<br>
+    <b>Host :</b> mail.cheezburger.lab:25<br>
+    <b>Username :</b> mike.rockston<br>
+    <b>Password :</b> CutePuppy9<br><br>
+
+    Leave <b>Ignore Certificate Errors</b> enabled.<br><br>
+
+    Click the <b>Save Profile</b> button.
         </div>
       </div>
 
-      <!-- b) Users and Groups -->
+      <!-- 1b) Users and Groups -->
       <div class="acc-item">
         <div class="acc-header" onclick="toggleAcc('s4acc1b')">
-          <span id="s4acc1b-arrow" class="acc-arrow">▶</span>b) Users and Groups
+          <span id="s4acc1b-arrow" class="acc-arrow">▶</span>
+          b) Users and Groups
         </div>
         <div id="s4acc1b" class="acc-body">
-          Open Users & Groups → New Group: Cheezburger → Bulk Import:<br>
-          File: /root/Desktop/emails.csv
+          Open the <b>Users & Groups</b> view from the sidebar.<br><br>
+
+• Delete any existing groups.<br><br>
+
+Click the <b>New Group</b> button and configure:<br><br>
+
+<b>Group name :</b> Cheezburger<br><br>
+
+Click the <b>Bulk Import Users</b> button.<br><br>
+
+Upload the file:<br>
+<code>/root/Desktop/emails.csv</code><br><br>
+
+Click the <b>Save Changes</b> button.
+
         </div>
       </div>
 
-      <!-- c) Landing Pages -->
+      <!-- 1c) Landing Pages -->
       <div class="acc-item">
         <div class="acc-header" onclick="toggleAcc('s4acc1c')">
-          <span id="s4acc1c-arrow" class="acc-arrow">▶</span>c) Landing Pages
+          <span id="s4acc1c-arrow" class="acc-arrow">▶</span>
+          c) Landing Pages
         </div>
         <div id="s4acc1c" class="acc-body">
-          New Landing Page → Name: Wordpress login → Import:<br>
-          URL: https://cheezburger.lab/wp-login.php<br>
-          Capture Data: Yes<br>Capture Passwords: Yes<br>
-          Redirect: https://cheezburger.lab/
+          Open the <b>Landing Pages</b> view from the sidebar.<br><br>
+
+• Delete any existing landing pages.<br><br>
+
+Click the <b>New Landing Page</b> button and configure:<br><br>
+
+<b>Page name :</b> Wordpress login<br><br>
+
+Click the <b>Import Site</b> button.<br><br>
+
+Enter the following URL:<br>
+<code>https://cheezburger.lab/wp-login.php</code><br>
+and click <b>Import</b>.<br><br>
+
+<b>Capture Submitted Data :</b> Yes<br>
+<b>Capture Passwords :</b> Yes<br>
+<b>Redirect to :</b> https://cheezburger.lab/<br><br>
+
+Click the <b>Save Page</b> button.
+
         </div>
       </div>
 
-      <!-- d) Email Templates -->
+      <!-- 1d) Email Templates -->
       <div class="acc-item">
         <div class="acc-header" onclick="toggleAcc('s4acc1d')">
-          <span id="s4acc1d-arrow" class="acc-arrow">▶</span>d) Email Templates
+          <span id="s4acc1d-arrow" class="acc-arrow">▶</span>
+          d) Email Templates
         </div>
         <div id="s4acc1d" class="acc-body">
-          Template: Cheezburger<br>Subject: Urgent problem with our homepage<br>
-          HTML Source:<br>
-          &lt;html&gt;... (email HTML here) ...&lt;/html&gt;
+          Open the <b>Email Templates</b> view from the sidebar.<br><br>
+
+• Delete any existing email templates.<br><br>
+
+Click the <b>New Template</b> button and configure:<br><br>
+
+<b>Template name :</b> Cheezburger<br>
+<b>Email Subject :</b> Urgent problem with our homepage<br><br>
+
+Open the <b>HTML</b> tab.<br><br>
+
+Copy and paste the following HTML source code:<br><br>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Hey {{.FirstName}}, One of our most important clients reported a problem with our WordPress page (&lt;a href="{{.URL}}"&gt;https://cheezburger.lab/&lt;/a&gt;). Could you please take a quick look and make sure all information is correct? Thanks, {{.From}}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<br>
+
+Leave the <b>Add Tracking Image</b> option enabled.<br><br>
+
+Click the <b>Save Template</b> button.
+
         </div>
       </div>
 
-      <!-- e) Launching the Campaign -->
+      <!-- 1e) Launching the Campaign -->
       <div class="acc-item">
         <div class="acc-header" onclick="toggleAcc('s4acc1e')">
-          <span id="s4acc1e-arrow" class="acc-arrow">▶</span>e) Launching the Campaign
+          <span id="s4acc1e-arrow" class="acc-arrow">▶</span>
+          e) Launching the Campaign
         </div>
         <div id="s4acc1e" class="acc-body">
-          New Campaign → Name: Cheezburger<br>
-          Template: Cheezburger<br>
-          Landing Page: Wordpress login<br>
-          URL: https://cheezeburger.lab/wp-login.php<br>
-          Sending Profile: Mike Rockston<br>
-          Group: Cheezburger
+          Open the <b>Campaigns</b> view from the sidebar.<br><br>
+
+Click the <b>New Campaign</b> button to create a new phishing campaign:<br><br>
+
+<b>Campaign name :</b> Cheezburger<br>
+<b>Email template :</b> Cheezburger<br>
+<b>Landing page :</b> Wordpress login<br>
+<b>URL :</b> https://cheezeburger.lab/wp-login.php<br><br>
+
+Leave the <b>Launch Date</b> and <b>Send Emails By</b> settings unchanged.<br><br>
+
+<b>Sending profile :</b> Mike Rockston<br>
+<b>Groups :</b> Cheezburger<br><br>
+
+Click the <b>Launch Campaign</b> button and accept the confirmation.
+
         </div>
       </div>
 
@@ -141,64 +675,122 @@
   <!-- 2) Analyzing the Results -->
   <div class="acc-item">
     <div class="acc-header" onclick="toggleAcc('s4acc2')">
-      <span id="s4acc2-arrow" class="acc-arrow">▶</span>2) Analyzing the Results
+      <span id="s4acc2-arrow" class="acc-arrow">▶</span>
+      2) Analyzing the Results
     </div>
     <div id="s4acc2" class="acc-body">
+       <!-- 2a) Dashboard Statistics -->
+  <div class="acc-item">
+    <div class="acc-header" onclick="toggleAcc('s4acc2a')">
+      <span id="s4acc2a-arrow" class="acc-arrow">▶</span>
+      a) Dashboard Statistics
+    </div>
+    <div id="s4acc2a" class="acc-body">
+      First, make sure you have the latest information by clicking the Refresh button.
 
-      <!-- a) Dashboard Statistics -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s4acc2a')">
-          <span id="s4acc2a-arrow" class="acc-arrow">▶</span>a) Dashboard Statistics
-        </div>
-        <div id="s4acc2a" class="acc-body">
-          Refresh → Check:<br>Email Opened / Clicked Link / Submitted Data
-        </div>
-      </div>
-
-      <!-- b) Phished Information -->
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc('s4acc2b')">
-          <span id="s4acc2b-arrow" class="acc-arrow">▶</span>b) Phished Information
-        </div>
-        <div id="s4acc2b" class="acc-body">
-          Lana Ross → OS from timeline<br>
-          Jeremy Emerson → Password in submitted data
-        </div>
-      </div>
-
+1. Question: Enter the number shown on the Email Opened progress bar.
+2. Question: Enter the number shown on the Clicked Link progress bar.
+3. Question: Enter the number shown on the Submitted Data progress bar.
     </div>
   </div>
 
-</div> <!-- END SECTION IV -->
-
-<!-- SECTION V -->
-<div id="s5" class="content">
-  <div class="section-title">V. Nmap: Basics – Intermediate</div>
-
+  <!-- 2b) Phished Information -->
   <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s5acc1')"><span id="s5acc1-arrow" class="acc-arrow">▶</span>1) Introduction</div>
-    <div id="s5acc1" class="acc-body"></div>
+    <div class="acc-header" onclick="toggleAcc('s4acc2b')">
+      <span id="s4acc2b-arrow" class="acc-arrow">▶</span>
+      b) Phished Information
+    </div>
+    <div id="s4acc2b" class="acc-body">
+      First question:
+
+Search for Lana Ross using the search function.
+Open the user's timeline by clicking the expand arrow next to their name.
+Find the operating system shown under the Clicked Link action.
+Second question:
+
+Search for Jeremy Emerson using the search function.
+Open the user's timeline by clicking the expand arrow next to their name.
+View the submitted data by clicking View Details.
+Copy the value of the password parameter.
+    </div>
   </div>
-
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s5acc2')"><span id="s5acc2-arrow" class="acc-arrow">▶</span>2) Host Discovery</div>
-    <div id="s5acc2" class="acc-body"></div>
-  </div>
-
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s5acc3')"><span id="s5acc3-arrow" class="acc-arrow">▶</span>3) Port Scanning</div>
-    <div id="s5acc3" class="acc-body"></div>
-  </div>
-
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s5acc4')"><span id="s5acc4-arrow" class="acc-arrow">▶</span>4) Service and Version Detection</div>
-    <div id="s5acc4" class="acc-body"></div>
-  </div>
-
-  <div class="acc-item">
-    <div class="acc-header" onclick="toggleAcc('s5acc5')"><span id="s5acc5-arrow" class="acc-arrow">▶</span>5) NSE Scripts</div>
-    <div id="s5acc5" class="acc-body"></div>
   </div>
 
 </div>
 
+
+  <div id="s5" class="content"><div class="section-title">V. Nmap: Basics – Intermediate</div>
+    <!-- 1) Introduction -->
+<div class="acc-item">
+  <div class="acc-header" onclick="toggleAcc('s5acc1')">
+    <span id="s5acc1-arrow" class="acc-arrow">▶</span>
+    1) Introduction
+  </div>
+  <div id="s5acc1" class="acc-body">
+    <!-- Ton contenu ici -->
+  </div>
+</div>
+
+<!-- 2) Host Discovery -->
+<div class="acc-item">
+  <div class="acc-header" onclick="toggleAcc('s5acc2')">
+    <span id="s5acc2-arrow" class="acc-arrow">▶</span>
+    2) Host Discovery
+  </div>
+  <div id="s5acc2" class="acc-body">
+    <!-- Ton contenu ici -->
+  </div>
+</div>
+
+<!-- 3) Port Scanning -->
+<div class="acc-item">
+  <div class="acc-header" onclick="toggleAcc('s5acc3')">
+    <span id="s5acc3-arrow" class="acc-arrow">▶</span>
+    3) Port Scanning
+  </div>
+  <div id="s5acc3" class="acc-body">
+    <!-- Ton contenu ici -->
+  </div>
+</div>
+
+<!-- 4) Service and Version Detection -->
+<div class="acc-item">
+  <div class="acc-header" onclick="toggleAcc('s5acc4')">
+    <span id="s5acc4-arrow" class="acc-arrow">▶</span>
+    4) Service and Version Detection
+  </div>
+  <div id="s5acc4" class="acc-body">
+    <!-- Ton contenu ici -->
+  </div>
+</div>
+
+<!-- 5) NSE Scripts -->
+<div class="acc-item">
+  <div class="acc-header" onclick="toggleAcc('s5acc5')">
+    <span id="s5acc5-arrow" class="acc-arrow">▶</span>
+    5) NSE Scripts
+  </div>
+  <div id="s5acc5" class="acc-body">
+    <!-- Ton contenu ici -->
+  </div>
+</div>
+    </div>
+
+  
+  
+  <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div></div>
+  <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div></div>
+  <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
+  <div id="s9" class="content"><div class="section-title">IX. Macro Malware – Advanced</div></div>
+  <div id="s10" class="content"><div class="section-title">X. Tomcat & LSASS Dump – Advanced</div></div>
+  <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload – Advanced</div></div>
+  <div id="s12" class="content"><div class="section-title">XII. PHP Upload – Novice</div></div>
+  <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div></div>
+  <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
+  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
+  <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
+
+</div>
+
+</body>
+</html>
