@@ -331,9 +331,58 @@
         2) Host Discovery
       </div>
       <div id="s5acc2" class="acc-body">
-        Simple ping sweep:<br>
-        <code>nmap -sn 192.168.1.0/24</code><br><br>
-        This finds which hosts in a subnet are up.
+        <p>
+  La découverte d’hôtes est l’une des premières étapes d’un scan réseau. Elle permet d’identifier
+  quels appareils sont <b>en ligne</b> avant de lancer un scan de ports. Nmap optimise la vitesse
+  en vérifiant d’abord si les machines répondent.
+</p>
+
+<p>
+  Pour cela, Nmap envoie différentes requêtes : ping ICMP, requêtes timestamp, et sondes TCP vers les ports 80 et 443.  
+  Sur les réseaux locaux, Nmap utilise aussi les requêtes <b>ARP</b> pour identifier les hôtes.
+</p>
+
+<h3>🔍 Scan de découverte simple</h3>
+<p>Permet de découvrir les hôtes actifs sur un réseau :</p>
+
+<pre><code>nmap -sn 192.168.1.0/24</code></pre>
+
+<p>
+  Cette commande n’effectue <b>aucun scan de port</b>.  
+  Elle se contente d’indiquer quelles machines sont en ligne.
+</p>
+
+<h3>🚫 Si les pings sont bloqués (firewall)</h3>
+<p>
+  Lorsque les paquets ICMP sont filtrés, l’hôte apparaît hors ligne même s’il est actif.  
+  Dans ce cas, on utilise un <b>scan sans ping</b> :
+</p>
+
+<pre><code>nmap -Pn 192.168.6.1</code></pre>
+
+<h3>🖥️ Détection du système d’exploitation</h3>
+<p>
+  Nmap peut tenter d’identifier le système d’exploitation de la cible avec l’option :
+</p>
+
+<pre><code>nmap -O 192.168.6.1</code></pre>
+
+<p>
+  <b>Note :</b> la détection du système n’est jamais 100 % fiable.  
+  Elle dépend du nombre de ports ouverts et des signatures disponibles.
+</p>
+
+<div class="info-box">
+  <b>Exercice :</b><br>
+  Découvrez les hôtes en ligne sur le réseau <b>192.168.6.128/26</b> et répondez à :<br>
+  <i>« Combien d’hôtes sont en ligne dans ce réseau ? »</i>
+</div>
+
+<h3>💡 Astuce</h3>
+<p>Pour résoudre l’exercice, utilisez :</p>
+
+<pre><code>nmap -sn 192.168.6.128/26</code></pre>
+
       </div>
     </div>
 
