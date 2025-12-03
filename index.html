@@ -1203,7 +1203,53 @@ exec(query.cmd, (err, stdout, stderr) => {
 <pre><code>cmd=cat%20%2Fhome%2Fdavey%2Fpasswords.txt</code></pre>
 
   </div>
-  <div id="s12" class="content"><div class="section-title">XII. PHP Upload – Novice</div></div>
+  <div id="s12" class="content"><div class="section-title">XII. PHP Upload – Novice</div>
+  <h3>📤 Trouver l’Upload de Fichier Non Restreint</h3>
+
+<p>
+  Avant de vous connecter au site, vous ne verrez aucune option d’upload de fichier.  
+  Une fois inscrit et connecté, rendez-vous sur la page <b>User Profile</b> :  
+  vous devriez voir un bouton <b>Update profile image</b>.
+</p>
+
+<p>
+  Créez un fichier contenant uniquement le code suivant :
+</p>
+
+<pre><code>&lt;?php echo "I am vulnerable!"; ?&gt;</code></pre>
+
+<p>
+  Enregistrez-le avec une extension <b>.jpg</b> (exemple : <code>phpcode.jpg</code>), puis
+  uploadez-le comme image de profil.
+</p>
+
+<p>
+  Après l’upload, une icône d’image cassée apparaîtra.  
+  Faites un clic droit dessus et sélectionnez <b>Open image in new tab</b>  
+  pour afficher l’emplacement exact du fichier.
+</p>
+
+<p>
+  Utilisez ensuite la vulnérabilité <b>Path Traversal</b> sur la page du concours
+  pour exécuter le fichier PHP uploadé.
+</p>
+
+<hr>
+
+<h3>🔧 Exploitation – Unrestricted File Upload</h3>
+
+<p>
+  En PHP, la variable globale <code>__DIR__</code> contient le chemin absolu du fichier courant.
+</p>
+
+<pre><code>echo __DIR__;</code></pre>
+
+<p>
+  Selon la façon dont le site gère les chemins et les inclusions, cela peut vous aider à cibler
+  les bonnes routes pour exécuter votre fichier uploadé via path traversal.
+</p>
+
+  </div>
   <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div></div>
   <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
   <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
