@@ -565,7 +565,85 @@ nmap 192.168.6.128/26 -p 6379</code></pre>
  
 
 
-  <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div></div>
+  <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div>
+    <h3>📘 Introduction</h3>
+
+<p>Accédez à l’interface web de <b>Greenbone Security Assistant (GSA)</b> :</p>
+<pre><code>https://gvm.lab:9392</code></pre>
+
+<p>Connectez-vous avec les identifiants suivants :</p>
+<ul>
+  <li><b>Nom d’utilisateur :</b> admin</li>
+  <li><b>Mot de passe :</b> rangeforce</li>
+</ul>
+
+<hr>
+
+<h3>🎯 Configurer une cible</h3>
+
+<p>1️⃣ Naviguez vers <b>Configuration → Targets</b>.</p>
+<p>2️⃣ Cliquez sur l’icône <b>New Target</b> en haut à gauche.</p>
+<p>3️⃣ Renseignez les informations suivantes :</p>
+
+<ul>
+  <li><b>Name :</b> server</li>
+  <li><b>Hosts :</b> (Manual) 192.168.6.2</li>
+</ul>
+
+<p>4️⃣ Cliquez sur <b>Save</b>.</p>
+
+<hr>
+
+<h3>📡 Configurer un scan</h3>
+
+<p>1️⃣ Naviguez vers <b>Scans → Tasks</b>.</p>
+<p>2️⃣ Cliquez sur <b>New Task</b> dans le menu en haut à gauche.</p>
+<p>3️⃣ Renseignez les informations :</p>
+
+<ul>
+  <li><b>Name :</b> server scan</li>
+  <li><b>Target :</b> server</li>
+</ul>
+
+<p>4️⃣ Cliquez sur <b>Save</b>.</p>
+
+<hr>
+
+<h3>🚀 Lancer un scan</h3>
+
+<p>1️⃣ Naviguez vers <b>Scans → Tasks</b>.</p>
+<p>2️⃣ Cliquez sur l’icône <b>Start Task</b> en face de votre tâche pour lancer l’analyse.</p>
+
+<hr>
+
+<h3>🧩 Solution</h3>
+
+<p>
+  Accédez à <b>Scans → Reports</b>, puis cliquez sur la date du rapport pour l’ouvrir.
+  Vous pourrez ensuite naviguer dans les onglets <b>Results</b>, <b>CVEs</b> et <b>Applications</b>.
+</p>
+
+<h4>📍 Onglet <b>Results</b></h4>
+<ul>
+  <li>Affiche tous les résultats triés par gravité décroissante.</li>
+  <li>En haut : un service utilisant des <b>identifiants par défaut</b>.</li>
+  <li>Cliquez sur un résultat pour voir la <b>solution recommandée</b>.</li>
+</ul>
+
+<h4>📍 Onglet <b>CVEs</b></h4>
+<ul>
+  <li>Montre la liste des vulnérabilités détectées.</li>
+  <li>Vous y trouverez la CVE liée à la faille <b>Heartbleed (2014)</b>, une vulnérabilité de divulgation d'information.</li>
+</ul>
+
+<h4>📍 Onglet <b>Applications</b></h4>
+<ul>
+  <li>Liste les informations CPE (Common Platform Enumeration) détectées.</li>
+  <li>Les derniers chiffres d’un CPE représentent généralement la <b>version</b> d’une application.</li>
+  <li>Vous devriez identifier un <b>serveur Samba</b> dans cette liste.</li>
+</ul>
+
+  </div>
   <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div></div>
   <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
   <div id="s9" class="content"><div class="section-title">IX. Macro Malware – Advanced</div></div>
