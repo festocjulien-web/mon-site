@@ -535,6 +535,25 @@ Lancez l’exécutable :
 </div>
 
   <div id="s5" class="content"><div class="section-title">V. Nmap: Basics – Intermediate</div></div>
+  nmap -sn 192.168.6.128/26
+
+e
+Use the -sU flag to scan UDP ports:
+nmap -sU 192.168.6.128/26 -p 161
+free
+You can use the -p- flag to scan all ports or -p to specify which ports to scan:
+1.	nmap 192.168.6.128/26 -p-
+2.	nmap 192.168.6.128/26 -p 6379
+3.	free
+4.	Ensure that you are scanning all ports in order to find the FTP server listening on a high port number.
+5.	free
+6.	Use the -sV flag to run a service and version detection scan on all ports:
+7.	nmap -sV 192.168.6.128/26 -p-
+8.	
+You can specify NSE scripts via the --script argument:
+9.	nmap --script=redis-brute -p 6379 192.168.6.X
+
+
   <div id="s6" class="content"><div class="section-title">VI. Greenbone – Intermediate</div></div>
   <div id="s7" class="content"><div class="section-title">VII. Password Spraying – Advanced</div></div>
   <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
